@@ -1,0 +1,47 @@
+{% extends "master.html" %}
+
+{% block title %}
+  All Players
+{% endblock %}
+
+
+{% block content %}
+<table id='myTable'>
+  <caption>Players</caption>
+  <thead>
+    <tr>
+      <th onclick='sortTable(0)' scope="col">First Name</th>
+      <th onclick='sortTable(1)' scope="col">Last Name</th>
+      <th onclick='sortTable(2)' scope="col">High School</th>
+      <th onclick='sortTable(3)' scope="col">Graduation Year</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+
+        {% for x in allplayers %}
+        <tr>
+          <td data-label="First Name">{{ x.firstName }}</td>
+          <td data-label="Last Name">{{ x.lastName }}</td>
+          <td data-label="High School">{{ x.highSchool }}</td>
+          <td data-label="Grad Year">{{ x.gradYear }}</td>
+          <td data-label="Details"><a href="details/{{ x.id }}">Details</a></td>
+        </tr>
+        {% endfor %}
+      
+  </tbody>
+</table>
+<div class="pagination">
+  <span>
+    {% if allplayers.has_previous %}
+      <a href="?page={{ allplayers.previous_page_number }}">Previous</a>
+    {% endif %}
+    <span>
+      Page {{ allplayers.number }} of {{ allplayers.paginator.num_pages }}.
+    </span>
+    {% if allplayers.has_next %}
+      <a href="?page={{ allplayers.next_page_number }}">Next</a>
+    {% endif %}
+  </span>
+</div>
+{% endblock %}

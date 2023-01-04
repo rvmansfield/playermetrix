@@ -1,0 +1,45 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/global.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="{% static 'js/tablesort.js' %}"></script>
+</head>
+<body>
+
+
+  <div class="topnav" id="myTopnav">
+    <a href="#home">Player Metrix</a>
+    <a href="/players">Players</a>
+    <a href="#contact">Contact ME</a>
+    <a href="#about">About</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+
+<div class="content">
+{% block content %}
+{% endblock %}
+</div>
+
+<div class="footer">
+  <p>Footer</p>
+</div>
+
+<script>
+  function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
+  }
+  </script>
+
+</body>
+</html>
