@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@nvx=l@vl&kgvcn=re=b-jg0%ung9oj*#0lrukpa(cyp%^kzth
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','www.playermetrix.com','playermetrix.com']
 
 
 # Application definition
@@ -76,15 +76,26 @@ WSGI_APPLICATION = 'playermetrix.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'playermetrix',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST':'localhost',
-        'PORT':'3306',
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.mysql',
+       'NAME': 'playermetrix',
+       'USER': 'root',
+       'PASSWORD': '',
+       'HOST':'localhost',
+       'PORT':'3306',
+   }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'playermetrix',
+#         'USER': 'playermetrix',
+#         'PASSWORD': 'Y@nk33swin',
+#         'HOST':'mysql.playermetrix.com',
+#         'PORT':'3306',
+#     }
+# }
 
 
 # Password validation

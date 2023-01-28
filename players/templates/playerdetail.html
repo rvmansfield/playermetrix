@@ -1,0 +1,108 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Player Metrix - All Players
+{% endblock %}
+
+
+{% block content %}
+
+
+
+    
+    <h1 class="text-center">{{ playername.player.firstName }} {{ playername.player.lastName }}</h1>
+    
+    
+      <h3 class="text-center">{{ playername.player.highSchool }} ({{ playername.player.gradYear }})<br>
+      Throws: {{ playername.player.throws }} / Hits: {{ playername.player.hits }}</h3>
+      
+
+        
+
+    <ul class="nav nav-tabs" role="tablist"> 
+
+      
+        {% for x in playerinfo %}
+          
+          
+            <li class="nav-item">
+              
+                <a class="nav-link" id="eventlink" data-bs-toggle="tab" href="#{{ x.event.id }}">{{ x.event }}</a>
+          
+            </li>
+           
+        {% endfor %}
+       
+    </ul>
+
+    <script>
+      var counter = 0;
+
+    </script>
+
+
+    <div class="tab-content">
+
+      {% for x in playerinfo %}
+        <div id="{{ x.event.id }}" class="container tab-pane bg-white">
+          <script>
+              if (counter < 1)  {
+                  var eventid = {{ x.event.id }};
+                  counter++;
+              }
+              
+          </script>
+        
+            <div class="row">
+              <div class="col-lg-6 p-4">
+                  <div class="shadow p-4 mb-4 bg-light text-center"><h4>Height</h4><h2>{{ x.height }} in</h2></div>
+              </div>
+              <div class="col-lg-6 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>Weight</h4><h2>{{ x.weight }} lbs</h2></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>IF VELO</h4><h2>{{ x.ifVelo }} mph</h2></div>
+              </div>
+              <div class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>OF VELO</h4><h2>{{ x.ofVelo }} mph</h2></div>
+              </div>
+              <div class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>EXIT VELO</h4><h2>{{ x.exitVelo }} mph</h2></div>
+              </div>
+              
+            </div>
+            <div class="row">
+              <div class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>60 YARD</h4><h2>{{ x.sixtyyard }} sec</h2></div>
+              </div>
+              <div class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>MAX FASTBALL</h4><h2>{{ x.maxFB }} mph</h2></div>
+              </div>
+              <div class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>CHANGEUP</h4><h2>{{ x.changeUp }} mph</h2></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>CURVE</h4><h2>{{ x.curve }} mph</h2></div>
+              </div>
+              <div class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>CATCHER VELO</h4><h2>{{ x.cVelo }} mph</h2></div>
+              </div>
+              <div class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>POP TIME</h4><h2>{{ x.popTime }} sec</h2></div>
+              </div>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <script>
+        
+        document.getElementById("eventlink").className="nav-link active";
+        document.getElementById(eventid).className="container tab-pane bg-white active";
+    </script>
+    
+{% endblock %}

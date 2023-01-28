@@ -1,0 +1,53 @@
+{% extends "master.html" %}
+{% load static %}
+{% block title %}
+  Player Metrix
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+    <div class="col-lg-6">
+      <img src="{% static 'images/home2.jpg' %}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy">
+    </div>
+    <div class="col-lg-6">
+      <h1 class="display-5 fw-bold lh-1 mb-3">Reliable player data to track progress</h1>
+      <p class="lead">Our events provide players ages 13 and up the ability to have their skills tracked in key analytics that travel, showcase, high school and college coaches use to determine abilities.</p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a href="events/" class="btn btn-primary btn-lg px-4 me-md-2">Find an event</a>
+        
+      </div>
+    </div>
+  </div>
+
+
+<hr>
+
+  <h1 class="text-center">Why Player Metrix?</h1>
+  <!-- Three columns of text below the carousel -->
+  <div class="row">
+    <div class="col-lg-4">
+      <img src="{% static 'images/home1.jpg' %}" class="d-block mx-lg-auto img-fluid" alt="Homepage" height="150" loading="lazy">
+      <h2 class="fw-normal">Technology</h2>
+      <p>State-of-the-art technology for precise data measurements.</p>
+      
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <img src="{% static 'images/home3.jpg' %}" class="d-block mx-lg-auto img-fluid" alt="Homepage" height="150" loading="lazy">
+      <h2 class="fw-normal">Low Costs</h2>
+      <p>Less than half the cost of other “pro-style” events.</p>
+      
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <img src="{% static 'images/home4.jpg' %}" class="d-block mx-lg-auto img-fluid" alt="Homepage" height="150" loading="lazy">
+      <h2 class="fw-normal">Data</h2>
+      <p>Every participant receives data that is trackable/shareable.</p>
+      
+    </div><!-- /.col-lg-4 -->
+  </div><!-- /.row -->
+
+
+
+
+{% endblock %}

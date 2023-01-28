@@ -1,0 +1,36 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Player Metrix - Events
+{% endblock %}
+
+
+{% block content %}
+    
+    
+      <h1 class="shadow p-4 mb-4 bg-white">Events</h1>
+      <table id='myTable' class='table'>
+        <thead>
+          <tr>
+            <th onclick='sortTable(0)' scope="col">Title</th>
+            <th onclick='sortTable(1)' scope="col">Location</th>
+            <th onclick='sortTable(2)' scope="col">Date</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+
+              {% for x in allevents %}
+              <tr>
+                <td data-label="Title">{{ x.title }}</td>
+                <td data-label="Location">{{ x.location }}</td>
+                <td data-label="Date">{{ x.date }}</td>
+                <td data-label="Details"><a class="btn btn-primary" href="{{ x.id }}">Details</a></td>
+              </tr>
+              {% endfor %}
+            
+        </tbody>
+      </table>
+      
+   
+{% endblock %}

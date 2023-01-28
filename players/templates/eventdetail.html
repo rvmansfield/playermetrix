@@ -1,0 +1,28 @@
+{% extends "master.html" %}
+{% load static %}
+{% block title %}
+{{ eventinfo.title }} - {{ eventinfo.date }}
+{% endblock %}
+
+
+{% block content %}
+
+
+
+    
+    
+    <div class=”card”>
+      <div class=”card-header><h1>{{ eventinfo.title }}</h1></div>
+      <div class=”card-body”><h2>{{ eventinfo.location }} - {{ eventinfo.date }}</h2>
+      <img class="rounded img-fluid" src="{% static 'images/home2.jpg' %}" width="80%">  
+        
+      <p>{% autoescape off %}{{ eventinfo.eventDetails }}{% endautoescape %}</p><a class="btn btn-primary" href="/register">Register</a></div>
+      
+    </div>
+
+
+
+
+
+
+{% endblock %}
