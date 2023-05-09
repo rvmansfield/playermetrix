@@ -1,0 +1,32 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+  Player Metrix - {{ blogpost.title }}
+{% endblock %}
+
+
+{% block content %}
+    
+    
+<div class="row">
+  <div class="my-4"><h1>{{ blogpost.title }}</h1>
+  </div>
+   
+</div>
+
+    <div class="row">
+            
+        <div class="col">
+          <img class="rounded mx-auto float-end p-4" src="{% static "images/blog/"%}{{blogpost.id}}.jpg" width="500px">
+          <i class="fa-regular fa-calendar"></i> <b>{{ blogpost.date }}</b>
+          <p>
+          <p>{% autoescape off %}{{ blogpost.details }}{% endautoescape %}</p>
+        </div>
+        
+
+    </div>
+
+      
+   
+{% endblock %}

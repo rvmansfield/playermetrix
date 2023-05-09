@@ -1,25 +1,66 @@
 {% extends "master.html" %}
-
+{% load static %}
 {% block title %}
-  Player Metrix - All Players
-{% endblock %}
 
+    {% if playerevents == 0 %}
+      Player Metrix - {{ playername.firstName }} {{ playername.lastName }}
+    {% else %}
+      Player Metrix - {{ playername.player.firstName }} {{ playername.player.lastName }}
+    {% endif %}  
+
+{% endblock %}
 
 {% block content %}
 
 
+<!-- If player has no events -->
+
+{% if playerevents == 0 %}
+
 
     
-    <h1 class="text-center">{{ playername.player.firstName }} {{ playername.player.lastName }}</h1>
+    <h1 class="text-center">{{ playername.firstName }} {{ playername.lastName }}</h1>
+    
+    
+      <h3 class="text-center">{{ playername.highSchool }} ({{ playername.gradYear }})<br>
+      Throws: {{ playername.throws }} / Hits: {{ playername.hits }}</h3>
+        
+      {% if playerimg == True %}
+          <img class="rounded mx-auto d-block p-2" src="{% static "images/players/"%}{{playername.slug}}.jpg" width="240px">
+          
+
+      {% endif %} 
+    
+<!-- If player has events -->
+
+{% else %}
+
+      <h1 class="text-center">{{ playername.player.firstName }} {{ playername.player.lastName }}</h1>
     
     
       <h3 class="text-center">{{ playername.player.highSchool }} ({{ playername.player.gradYear }})<br>
       Throws: {{ playername.player.throws }} / Hits: {{ playername.player.hits }}</h3>
-      
 
-        
+      {% if playerimg == True %}
+          <img class="rounded mx-auto d-block p-2" src="{% static "images/players/"%}{{playername.player.slug}}.jpg" width="240px">
+          
 
-    <ul class="nav nav-tabs" role="tablist"> 
+      {% endif %} 
+
+{% endif %}  
+
+
+  
+
+
+<script>
+      var counter = 0;
+
+    </script>
+
+<!-- Events tabs -->
+
+    <ul class="nav nav-tabs justify-content-center" role="tablist"> 
 
       
         {% for x in playerinfo %}
@@ -27,7 +68,7 @@
           
             <li class="nav-item">
               
-                <a class="nav-link" id="eventlink" data-bs-toggle="tab" href="#{{ x.event.id }}">{{ x.event }}</a>
+                <a onclick="javascript:changetab({{ x.event.id }})" class="nav-link" id="eventlink{{ x.event.id }}" data-bs-toggle="tab" href="#{{ x.event.id }}"><h4>{{ x.event }}</h4></a>
           
             </li>
            
@@ -35,16 +76,13 @@
        
     </ul>
 
-    <script>
-      var counter = 0;
-
-    </script>
+    
 
 
     <div class="tab-content">
 
       {% for x in playerinfo %}
-        <div id="{{ x.event.id }}" class="container tab-pane bg-white">
+        <div id="{{ x.event.id }}" class="container tab-pane bg-light">
           <script>
               if (counter < 1)  {
                   var eventid = {{ x.event.id }};
@@ -53,7 +91,7 @@
               
           </script>
         
-            <div class="row">
+            <div class="row bg-light">
               <div class="col-lg-6 p-4">
                   <div class="shadow p-4 mb-4 bg-light text-center"><h4>Height</h4><h2>{{ x.height }} in</h2></div>
               </div>
@@ -61,7 +99,7 @@
                 <div class="shadow p-4 mb-4 bg-light text-center"><h4>Weight</h4><h2>{{ x.weight }} lbs</h2></div>
               </div>
             </div>
-            <div class="row">
+            <div class="row bg-light">
               <div class="col-lg-4 p-4">
                 <div class="shadow p-4 mb-4 bg-light text-center"><h4>IF VELO</h4><h2>{{ x.ifVelo }} mph</h2></div>
               </div>
@@ -73,7 +111,7 @@
               </div>
               
             </div>
-            <div class="row">
+            <div class="row bg-light">
               <div class="col-lg-4 p-4">
                 <div class="shadow p-4 mb-4 bg-light text-center"><h4>60 YARD</h4><h2>{{ x.sixtyyard }} sec</h2></div>
               </div>
@@ -84,7 +122,7 @@
                 <div class="shadow p-4 mb-4 bg-light text-center"><h4>CHANGEUP</h4><h2>{{ x.changeUp }} mph</h2></div>
               </div>
             </div>
-            <div class="row">
+            <div class="row bg-light">
               <div class="col-lg-4 p-4">
                 <div class="shadow p-4 mb-4 bg-light text-center"><h4>CURVE</h4><h2>{{ x.curve }} mph</h2></div>
               </div>
@@ -100,9 +138,12 @@
     </div>
 
     <script>
-        
-        document.getElementById("eventlink").className="nav-link active";
-        document.getElementById(eventid).className="container tab-pane bg-white active";
+        function changetab(eventid)  {
+          document.getElementById("eventlink" + eventid).className="nav-link bg-light active";
+        }  
+
+        document.getElementById("eventlink" + eventid).className="nav-link bg-light active";
+        document.getElementById(eventid).className="container tab-pane active";
     </script>
     
 {% endblock %}

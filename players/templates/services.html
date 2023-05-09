@@ -1,0 +1,62 @@
+{% extends "master.html" %}
+{% load static %}
+{% block title %}
+  Player Metrix
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+  <div class="my-4"><h1>Our Services</h1>
+  </div>
+   
+</div>
+
+<div class="row py-2 row-cols-1 row-cols-lg-2">
+  <div class="col">
+    <h2>Player Metrics Testing Events</h2> 
+
+    <P>Our core offering is captruing player data through a series of tests using technology to get accurate measurements. Each player is measured on metrics including the 60 yard dash, IF/OF throwing velocity, hitting velocity, pitch velocity, height/weight and more. After data has been captured the information is sent to the player/coaches and posted online where it can be shared.
+      <p><a class="btn btn-primary" href="/events">Register For An Event</a></p>
+    </div>
+  <div class="col">
+    <img src="{% static 'images/of.jpg' %}" class="img-fluid mx-auto d-block" width="300px">
+  </div>
+  
+
+</div>
+
+
+<div class="row py-2 row-cols-1 row-cols-lg-2">
+  <div class="col">
+    <h2>Recruiting Video</h2> 
+
+        <p>A recruiting video is an essential tool in the process of being seen by coaches and scouts. Athletes should highlight their best skills in order to increase their visibility with coaches.</p>
+        <p>Let us provide our expertise and services to ensure your video gets noticed.
+        <ul>
+          <li>You can provide the video content or we can schedule a time to do the recording.
+          <li>We will edit the video, add graphics and player's information.
+          <li>Once it is ready you can send to coaches, post on social media, etc.  
+        </ul>        
+          <h4>
+            <p>"...we asked coaches what they look for when watching a skills video. The top five responses were: mechanics, speed, athleticism, power and body language."</p>
+            
+          </h4>
+          <figcaption class="blockquote-footer">
+            Next College Student Athlete
+          </figcaption>
+          <p><a class="btn btn-primary" href="/register">Register For A Video</a></p>
+  </div>
+  <div class="col">
+    <div class="ratio ratio-16x9 text-center">
+      <iframe style="max-width: 100%;height: 100%;" src="https://www.youtube.com/embed/M6Fpn0xY03I?controls=0" title="Recruiting Videos" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>  
+  </div>
+  
+
+</div>
+          
+         
+
+{% endblock %}

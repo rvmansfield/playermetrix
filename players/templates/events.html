@@ -8,29 +8,32 @@
 {% block content %}
     
     
-      <h1 class="shadow p-4 mb-4 bg-white">Events</h1>
-      <table id='myTable' class='table'>
-        <thead>
-          <tr>
-            <th onclick='sortTable(0)' scope="col">Title</th>
-            <th onclick='sortTable(1)' scope="col">Location</th>
-            <th onclick='sortTable(2)' scope="col">Date</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-
-              {% for x in allevents %}
-              <tr>
-                <td data-label="Title">{{ x.title }}</td>
-                <td data-label="Location">{{ x.location }}</td>
-                <td data-label="Date">{{ x.date }}</td>
-                <td data-label="Details"><a class="btn btn-primary" href="{{ x.id }}">Details</a></td>
-              </tr>
-              {% endfor %}
+<div class="row">
+  <div class="my-4"><h1>Events</h1>
+  </div>
+   
+</div>
+{% for x in allevents %}
+    <div class="row border bg-light g-12 py-2 row-cols-2 row-cols-lg-4 align-center">
             
-        </tbody>
-      </table>
+        <div class="col">
+        <h2>{{ x.title }}</h2>
+        </div>
+        <div class="col">
+        <h4>{{ x.location }}</h4>
+        </div>
+        <div class="col">
+          <h4>{{ x.date }}</h4>
+          </div>
+        <div class="col-md-auto">
+        {% if x.registration == True  %}
+                        <a class="btn btn-primary" href="{{ x.id }}">Details / Register</a>
+        {% endif %}
+
+        </div>
+
+    </div>
+ {% endfor %}
       
    
 {% endblock %}
