@@ -23,29 +23,30 @@
     
     
       <h3 class="text-center">{{ playername.highSchool }} ({{ playername.gradYear }})<br>
-      Throws: {{ playername.throws }} / Hits: {{ playername.hits }}</h3>
-        
-      {% if playerimg == True %}
-          <img class="rounded mx-auto d-block p-2" src="{% static "images/players/"%}{{playername.slug}}.jpg" width="240px">
-          
-
-      {% endif %} 
+      Throws: {{ playername.throws }} / Hits: {{ playername.hits }}<br>
+      Positions: {{ playerpositions }}<br>
+      <a target="_blank" href="https://instagram.com/{{ playername.instagramUser }}"><i class="fa-brands fa-instagram fa-lg"></i></a>&nbsp;<a target="_blank" href="https://x.com/{{ playername.xUser }}"><i class="fa-brands fa-x-twitter fa-lg"></i></h3
+    
+    </h3>
+      
+      <img class="rounded mx-auto d-block p-2" src="/media/{{playername.picture}}" width="240px">
+      
     
 <!-- If player has events -->
 
 {% else %}
+  
 
       <h1 class="text-center">{{ playername.player.firstName }} {{ playername.player.lastName }}</h1>
     
     
       <h3 class="text-center">{{ playername.player.highSchool }} ({{ playername.player.gradYear }})<br>
-      Throws: {{ playername.player.throws }} / Hits: {{ playername.player.hits }}</h3>
-
-      {% if playerimg == True %}
-          <img class="rounded mx-auto d-block p-2" src="{% static "images/players/"%}{{playername.player.slug}}.jpg" width="240px">
-          
-
-      {% endif %} 
+      Throws: {{ playername.player.throws }}  Hits: {{ playername.player.hits }}<br>
+      Positions: {{ playerpositions }}<br>
+      <a target="_blank" href="https://instagram.com/{{ playername.player.instagramUser }}"><i class="fa-brands fa-instagram fa-lg"></i></a>&nbsp;<a target="_blank" href="https://x.com/{{ playername.player.xUser }}"><i class="fa-brands fa-x-twitter fa-lg"></i></h3>
+      <img class="rounded mx-auto d-block p-2" src="/media/{{playername.player.picture}}" width="240px">
+      
+      
 
 {% endif %}  
 
@@ -55,6 +56,7 @@
 
 <script>
       var counter = 0;
+      const events = [];
 
     </script>
 
@@ -69,9 +71,13 @@
             <li class="nav-item">
               
                 <a onclick="javascript:changetab({{ x.event.id }})" class="nav-link" id="eventlink{{ x.event.id }}" data-bs-toggle="tab" href="#{{ x.event.id }}"><h4>{{ x.event }}</h4></a>
-          
+              
             </li>
-           
+           <script>
+              //add an event to events array
+              events.push({{ x.event.id }});
+          
+           </script> 
         {% endfor %}
        
     </ul>
@@ -92,45 +98,45 @@
           </script>
         
             <div class="row bg-light">
-              <div class="col-lg-6 p-4">
+              <div id="{{ x.event.id }}height" title={{ x.height }} class="col-lg-6 p-4">
                   <div class="shadow p-4 mb-4 bg-light text-center"><h4>Height</h4><h2>{{ x.height }} in</h2></div>
               </div>
-              <div class="col-lg-6 p-4">
+              <div id="{{ x.event.id }}weight" title={{ x.weight }} class="col-lg-6 p-4">
                 <div class="shadow p-4 mb-4 bg-light text-center"><h4>Weight</h4><h2>{{ x.weight }} lbs</h2></div>
               </div>
             </div>
             <div class="row bg-light">
-              <div class="col-lg-4 p-4">
+              <div id="{{ x.event.id }}ifvelo" title={{ x.ifVelo }} class="col-lg-4 p-4">
                 <div class="shadow p-4 mb-4 bg-light text-center"><h4>IF VELO</h4><h2>{{ x.ifVelo }} mph</h2></div>
               </div>
-              <div class="col-lg-4 p-4">
+              <div id="{{ x.event.id }}ofvelo" title={{ x.ofVelo }} class="col-lg-4 p-4">
                 <div class="shadow p-4 mb-4 bg-light text-center"><h4>OF VELO</h4><h2>{{ x.ofVelo }} mph</h2></div>
               </div>
-              <div class="col-lg-4 p-4">
+              <div id="{{ x.event.id }}exitvelo" title={{ x.exitVelo }} class="col-lg-4 p-4">
                 <div class="shadow p-4 mb-4 bg-light text-center"><h4>EXIT VELO</h4><h2>{{ x.exitVelo }} mph</h2></div>
               </div>
               
             </div>
             <div class="row bg-light">
-              <div class="col-lg-4 p-4">
+              <div id="{{ x.event.id }}sixtyyard" title={{ x.sixtyyard }} class="col-lg-4 p-4">
                 <div class="shadow p-4 mb-4 bg-light text-center"><h4>60 YARD</h4><h2>{{ x.sixtyyard }} sec</h2></div>
               </div>
-              <div class="col-lg-4 p-4">
+              <div id="{{ x.event.id }}maxfb" title={{ x.maxFB }} class="col-lg-4 p-4">
                 <div class="shadow p-4 mb-4 bg-light text-center"><h4>MAX FASTBALL</h4><h2>{{ x.maxFB }} mph</h2></div>
               </div>
-              <div class="col-lg-4 p-4">
+              <div id="{{ x.event.id }}changeup" title={{ x.changeUp }} class="col-lg-4 p-4">
                 <div class="shadow p-4 mb-4 bg-light text-center"><h4>CHANGEUP</h4><h2>{{ x.changeUp }} mph</h2></div>
               </div>
             </div>
             <div class="row bg-light">
               <div class="col-lg-4 p-4">
-                <div class="shadow p-4 mb-4 bg-light text-center"><h4>CURVE</h4><h2>{{ x.curve }} mph</h2></div>
+                <div id="{{ x.event.id }}curve" title={{ x.curve }} class="shadow p-4 mb-4 bg-light text-center"><h4>CURVE</h4><h2>{{ x.curve }} mph</h2></div>
               </div>
               <div class="col-lg-4 p-4">
-                <div class="shadow p-4 mb-4 bg-light text-center"><h4>CATCHER VELO</h4><h2>{{ x.cVelo }} mph</h2></div>
+                <div id="{{ x.event.id }}cvelo" title={{ x.cVelo }} class="shadow p-4 mb-4 bg-light text-center"><h4>CATCHER VELO</h4><h2>{{ x.cVelo }} mph</h2></div>
               </div>
               <div class="col-lg-4 p-4">
-                <div class="shadow p-4 mb-4 bg-light text-center"><h4>POP TIME</h4><h2>{{ x.popTime }} sec</h2></div>
+                <div id="{{ x.event.id }}poptime" title={{ x.popTime }} class="shadow p-4 mb-4 bg-light text-center"><h4>POP TIME</h4><h2>{{ x.popTime }} sec</h2></div>
               </div>
             </div>
         </div>
@@ -138,12 +144,37 @@
     </div>
 
     <script>
+
         function changetab(eventid)  {
           document.getElementById("eventlink" + eventid).className="nav-link bg-light active";
+          
         }  
 
         document.getElementById("eventlink" + eventid).className="nav-link bg-light active";
         document.getElementById(eventid).className="container tab-pane active";
+        
+        
+        const metrics = ["height", "weight", "ifvelo","ofvelo","exitvelo","sixtyyard","maxfb","changeup","curve","cvelo","poptime"];
+          
+              
+            for (let u = 0; u < events.length; u++) {
+                
+                for (let i = 0; i < metrics.length; i++) {
+                  thevalue = (events[u]+metrics[i]);
+                    //alert(thevalue);
+                    if (document.getElementById(thevalue).title == 0) {
+                      document.getElementById(thevalue).style.display = 'none';
+                  }
+                  
+                }
+
+            }
+          
+
+        
+          
+      
+
     </script>
     
 {% endblock %}

@@ -1,0 +1,136 @@
+{% extends "master.html" %}
+{% load static %}
+{% block title %}
+  Player Metrix
+{% endblock %}
+
+
+
+{% block content %}
+<div class="row">
+    <div class="my-4"><h1>Profile for {{ user.username }}</h1>
+    </div>
+     
+</div>
+        
+      {% if user_form.errors %}
+      ERROR
+          <div class="alert alert-danger alert-dismissible" role="alert">
+              <div id="form_errors">
+                  {% for key, value in user_form.errors.items %}
+                      <strong>{{ value }}</strong>
+                  {% endfor %}
+              </div>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+      
+      {% endif %}
+      <div class="form-content">
+          <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+                
+              <div class="row">
+                    
+                    <div class="col">
+                      
+                      <div class="form-group">
+                          
+                        <div class="row">
+                                
+                            <div class="col-sm-6 py-2"><label class="fw-bold">First Name</label>{{ user_form.first_name }}</div>
+                            <div class="col-sm-6 py-2"><label class="fw-bold">Last Name</label>{{ user_form.last_name }}</div>
+                            
+                        </div>
+                        <div class="row">
+                                
+                            <div class="col-sm-6 py-2"><label class="fw-bold">Email</label>{{ user_form.email }}</div>
+                            <div class="col-sm-6 py-2"><label class="fw-bold">Location</label>{{ profile_form.location }}</div>
+                            
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="form-group shadow p-4 mb-4 bg-light">
+
+                        
+                        <h1>Player Details</h1>  
+                        <h6><a href="/players/{{ user.username }}">View Profile Page</a></h6>
+                            <div class="row">
+                                
+                                <div class="col-sm-6 py-4"><label class="fw-bold">Player First Name</label>{{ player_form.firstName }}</div>
+                                <div class="col-sm-6 py-4"><label class="fw-bold">Player Last Name</label>{{ player_form.lastName }}</div>
+                                
+                            </div>
+                            <div class="row">
+                                
+                                <div class="col-sm-6 py-4"><label class="fw-bold">High School</label>{{ player_form.highSchool }}</div>
+                                <div class="col-sm-6 py-4"><label class="fw-bold">Graduation Year</label>{{ player_form.gradYear }}</div>
+                                
+                            </div>
+                            <div class="row">
+                                
+                                <div class="col-sm-6 py-4"><label class="fw-bold">Throws</label>{{ player_form.throws }}</div>
+                                <div class="col-sm-6 py-4"><label class="fw-bold">Hits</label>{{ player_form.hits }}</div>
+                                
+                            </div>
+                            <div class="row">
+                                
+                                <div class="col-sm-6 py-4"><label class="fw-bold">Instagram Username</label>{{ player_form.instagramUser }}</div>
+                                <div class="col-sm-6 py-4"><label class="fw-bold">X/Twitter Username</label>{{ player_form.xUser }}</div>
+                                
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Positions</h5>
+                                  </div>
+                                <div class="card-body">
+                                  
+                                    <div class="row">
+                                        
+                                        <div class="col-sm-4 py-2"><label class="fw-bold">Pitcher</label>&nbsp;{{ player_form.pitcher }}</div>
+                                        <div class="col-sm-4 py-2"><label class="fw-bold">Catcher</label>&nbsp;{{ player_form.catcher }}</div>
+                                        <div class="col-sm-4 py-2"><label class="fw-bold">First Base</label>&nbsp;{{ player_form.firstbase }}</div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col-sm-4 py-2"><label class="fw-bold">Second Base</label>&nbsp;{{ player_form.secondbase }}</div>
+                                        <div class="col-sm-4 py-2"><label class="fw-bold">Third Base</label>&nbsp;{{ player_form.thirdbase }}</div>
+                                        <div class="col-sm-4 py-2"><label class="fw-bold">Short Stop</label>&nbsp;{{ player_form.shortstop }}</div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        
+                                        <div class="col-sm-4 py-2"><label class="fw-bold">Left Field</label>&nbsp;{{ player_form.leftfield }}</div>
+                                        <div class="col-sm-4 py-2"><label class="fw-bold">Center Field</label>&nbsp;{{ player_form.centerfield }}</div>
+                                        <div class="col-sm-4 py-2"><label class="fw-bold">Right Field</label>&nbsp;{{ player_form.rightfield }}</div>
+                                        
+                                    </div>
+                            
+                                </div>
+                              </div>
+                            <div class="row">
+                                {% if not user.profile.player.picture %}
+                                    <div class="col-sm-4 py-5"><img src='/media/default.jpg' class="float-end" width='300'></div>
+                                {% else %}    
+                                    <div class="col-sm-4 py-5"><img src='/media/{{ user.profile.player.picture }}' class="float-end" width='300'></div>
+                                {% endif %} 
+                                <div class="col-sm-6 py-5">{{ player_form.picture }}</div>
+                                <div class="col-sm-4">{{ player_form.slug }}</div>
+                            </div>
+                        
+                         
+                      </div>
+                      
+                  </div>
+              </div>
+              <br><br>
+              <button type="submit" class="btn btn-dark btn-lg">Save Changes</button>
+              <button type="reset" class="btn btn-dark btn-lg">Reset</button>
+          </form>
+      </div>
+        
+           
+
+{% endblock %}

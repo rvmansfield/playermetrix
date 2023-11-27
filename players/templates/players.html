@@ -15,36 +15,44 @@
    
 </div>
 
+<table id="players" class="display" style="width:100%">
+  <thead>
+    <tr>
+        <th>Player</th>
+        <th>High School</th>
+        <th>Grad Year</th>
+        <th></th>
+    </tr>
+</thead>
 
+<tbody>
+  {% for x in allplayers %}
 
-{% for x in allplayers %}
-
-      <div class="row border bg-light g-12 py-2 row-cols-1 row-cols-lg-3 align-center">
+      <tr>
         
-              <div class="col">
+              <td>
                 <h2>{{ x.firstName }} {{ x.lastName }}</h2>
-              </div>
-              <div class="col">
-                <h4>{{ x.highSchool }} / {{ x.gradYear }}</h4>
-              </div>
-              <div class="col-md-auto">
+              </td>
+              <td>
+                <h4>{{ x.highSchool }}</h4>
+              </td>
+              <td>
+                <h4>{{ x.gradYear }}</h4>
+              </td>
+              <td>
                 <a class="btn btn-primary" href="{{ x.slug }}">Details</a>
-              </div>
+              </td>
 
-      </div>
-{% endfor %}
+      </tr>
+  {% endfor %}
 
-<div class="row row-cols-1 row-cols-lg-3">
-  <ul class="pagination  mx-auto my-4">
-    {% if allplayers.has_previous %}
-      <li class="page-item"><a class="page-link" href="?page={{ allplayers.previous_page_number }}">Previous</a></li>
-    {% endif %}
-      <li class="page-link">Page {{ allplayers.number }} of {{ allplayers.paginator.num_pages }}</li>
-    {% if allplayers.has_next %}
-      <li class="page-item"><a class="page-link" href="?page={{ allplayers.next_page_number }}">Next</a></li>
-    {% endif %}
-  </ul>
-</div>
+
+</tbody>
+
+
+</table>
+
+
 
 
 

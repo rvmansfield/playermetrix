@@ -1,14 +1,27 @@
 from django.db import models
 
+
 class Players(models.Model):
-  firstName = models.CharField(max_length=255)
-  lastName = models.CharField(max_length=255)
-  highSchool = models.CharField(max_length=255)
-  gradYear = models.IntegerField()
-  throws = models.CharField(max_length=5)
-  hits = models.CharField(max_length=5)
-  image = models.BooleanField(default=False)
-  slug = models.SlugField(default="", null=False)
+  firstName = models.CharField(max_length=255,default=None, blank=True)
+  lastName = models.CharField(max_length=255,default=None, blank=True)
+  highSchool = models.CharField(max_length=255,default=None, blank=True)
+  gradYear = models.IntegerField(default=None, blank=True)
+  throws = models.CharField(max_length=5,default=None, blank=True)
+  hits = models.CharField(max_length=5,default=None, blank=True)
+  image = models.BooleanField(default=0)
+  picture = models.ImageField(default='default.jpg', upload_to='profile_images')
+  instagramUser = models.CharField(max_length=255,default=None, blank=True)
+  xUser = models.CharField(max_length=255,default=None, blank=True)
+  slug = models.SlugField(default="", blank=True)
+  pitcher = models.BooleanField(default=False)
+  catcher = models.BooleanField(default=False)
+  firstbase = models.BooleanField(default=False)
+  secondbase = models.BooleanField(default=False)
+  thirdbase = models.BooleanField(default=False)
+  shortstop = models.BooleanField(default=False)
+  leftfield = models.BooleanField(default=False)
+  centerfield = models.BooleanField(default=False)
+  rightfield = models.BooleanField(default=False)
 
   def __str__(self):
       return f"{self.firstName} {self.lastName}"
@@ -63,3 +76,5 @@ class Blog(models.Model):
 
   class Meta:
       verbose_name_plural = "Blog"
+
+

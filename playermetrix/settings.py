@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'players'
+    'players',
+    'members',
+    'django_recaptcha',
 ]
 
 MIDDLEWARE = [
@@ -86,13 +89,14 @@ DATABASES = {
    }
 }
 
-# DATABASES = {
+
+#DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'playermetrix',
 #         'USER': 'playermetrix',
-#         'PASSWORD': 'Y@nk33swin',
-#         'HOST':'mysql.playermetrix.com',
+#      'PASSWORD': 'Y@nk33swin',
+#        'HOST':'mysql.playermetrix.com',
 #         'PORT':'3306',
 #     }
 # }
@@ -119,6 +123,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
+
+
 
 LANGUAGE_CODE = 'en-us'
 
@@ -151,3 +157,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#LOGIN_REDIRECT_URL = "/login"
+LOGOUT_REDIRECT_URL = "/"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
+RECAPTCHA_PUBLIC_KEY = '6LcWdhYpAAAAADIdxtEiZSCT26mN8peaXuPpve9y'
+RECAPTCHA_PRIVATE_KEY = '6LcWdhYpAAAAAKy4URIY3H-I3RR4cHItY1VsvOR3'

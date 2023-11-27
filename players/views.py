@@ -11,6 +11,9 @@ def index(request):
 def register(request):
     return render(request, 'register.html')
 
+def contact(request):
+    return render(request, 'contact.html')
+
 def confirm(request):
     return render(request, 'confirm.html')
 
@@ -25,20 +28,76 @@ def playerdetail(request,slug):
 
 
     if playerinfo.count() < 1:
+        
         template = loader.get_template('playerdetail.html')
         playername = Players.objects.get(slug=slug)
         playerimg = playername.image
         playerevents = 0
+        
+        positions = ""
+
+        if playername.pitcher == True:
+            positions = positions + "Pitcher/"
+        if playername.catcher == True:
+            positions = positions + "Catcher/"
+        if playername.firstbase == True:
+            positions = positions + "First Base/"
+        if playername.secondbase == True:
+            positions = positions + "Second Base/"
+        if playername.thirdbase == True:
+            positions = positions + "Third Base/"
+        if playername.shortstop == True:
+            positions = positions + "Short Stop/"
+        if playername.leftfield == True:
+            positions = positions + "Left Field/"
+        if playername.centerfield == True:
+            positions = positions + "Center Field/"
+        if playername.rightfield == True:
+            positions = positions + "Right Field"
+
+        positions = positions.rstrip("/")
+        
+        
+        
+        
+        
+        
         context = {
-            'playername': playername, 'playerevents': playerevents, 'playerimg': playerimg,
+            'playername': playername, 'playerevents': playerevents, 'playerimg': playerimg, 'playerpositions': positions,
         }
         
     else:
         playername = playerinfo[0]
         playerimg = playername.player.image
+        
+        positions = ""
+
+        if playername.player.pitcher == True:
+            positions = positions + "Pitcher/"
+        if playername.player.catcher == True:
+            positions = positions + "Catcher/"
+        if playername.player.firstbase == True:
+            positions = positions + "First Base/"
+        if playername.player.secondbase == True:
+            positions = positions + "Second Base/"
+        if playername.player.thirdbase == True:
+            positions = positions + "Third Base/"
+        if playername.player.shortstop == True:
+            positions = positions + "Short Stop/"
+        if playername.player.leftfield == True:
+            positions = positions + "Left Field/"
+        if playername.player.centerfield == True:
+            positions = positions + "Center Field/"
+        if playername.player.rightfield == True:
+            positions = positions + "Right Field"
+
+        positions = positions.rstrip("/")
+        print(positions)
+
+        
         template = loader.get_template('playerdetail.html')
         context = {
-            'playerinfo': playerinfo,'playername': playername, 'playerimg': playerimg,
+            'playerinfo': playerinfo,'playername': playername, 'playerimg': playerimg, 'playerpositions': positions, 
         }
         
     return HttpResponse(template.render(context, request))
@@ -54,22 +113,13 @@ def eventdetail(request,id):
 
 def players(request):
     allplayers = Players.objects.all().order_by('lastName').values()
-    page_num = request.GET.get('page', 1)
-
-    paginator = Paginator(allplayers, 15) #pagination rows
+    
 
     context = {
         'allplayers': allplayers,
                 }
 
-    try:
-        allplayers = paginator.page(page_num)
-    except PageNotAnInteger:
-        # if page is not an integer, deliver the first page
-        allplayers = paginator.page(1)
-    except EmptyPage:
-        # if the page is out of range, deliver the last page
-        allplayers = paginator.page(paginator.num_pages)
+
 
     return render(request, 'players.html', {'allplayers': allplayers})
 
