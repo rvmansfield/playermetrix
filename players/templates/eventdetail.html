@@ -11,15 +11,17 @@
 
     
     
-    <div class=”card”>
+
       <div class=”card-header><h1>{{ eventinfo.title }}</h1></div>
       <div class=”card-body”><h2>{{ eventinfo.location }} - {{ eventinfo.date }}</h2>
-      <img class="rounded img-fluid" src="{% static "images/events/"%}{{eventinfo.id}}.jpg" width="80%">  
-        
-      <p>{% autoescape off %}{{ eventinfo.eventDetails }}{% endautoescape %}</p><a class="btn btn-primary" href="/register">Register</a></div>
-      
-    </div>
 
+        <div class="row">
+          <div class="col-lg-6"><img class="rounded img-fluid" src="{% static "images/events/"%}{{eventinfo.id}}.jpg"></div>
+          <div class="col-lg-6">{% autoescape off %}{{ eventinfo.eventDetails }}{% endautoescape %}</p><a class="btn btn-primary" href="/register">Register</a></div>
+        </div>
+
+
+  
 
 
 

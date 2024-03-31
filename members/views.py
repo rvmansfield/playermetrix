@@ -18,7 +18,10 @@ def login_user(request):
         if user is not None:
             login(request, user)
             
-            return redirect('/')
+            #return redirect('/')
+            next_url = request.GET.get('next', '/')  # Default to '/' if 'next' is not present
+            print (next_url)
+            return redirect(next_url)
        
         else:
             messages.success(request,"There was an error logging in")
@@ -34,8 +37,9 @@ def user_profile(request):
         user_form = UpdateUserForm(request.POST, instance=request.user)
         profile_form = UpdateProfileForm(request.POST, instance=request.user.profile)
         player_form = UpdatePlayerForm(request.POST, request.FILES, instance=request.user.profile.player)
+        playerDetails = request.user.profile.player
 
-
+        
         if user_form.is_valid() and profile_form.is_valid() and player_form.is_valid():
             
             #save user
@@ -56,6 +60,7 @@ def user_profile(request):
             
             messages.success(request, 'Your profile is updated successfully')
             #return redirect(to='profile')
+            
         
      else:
         
@@ -66,7 +71,7 @@ def user_profile(request):
         
         
 
-     return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form, 'player_form': player_form})
+     return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form, 'player_form': player_form, 'playerDetails': playerDetails,})
 
 
 class RegisterView(View):
@@ -85,6 +90,8 @@ class RegisterView(View):
             form.save()
 
             username = form.cleaned_data.get('username')
+            
+
             messages.success(request, 'Account created!!!!')
 
             return redirect(to='/login')

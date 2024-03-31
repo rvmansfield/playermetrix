@@ -22,12 +22,12 @@ class UpdateUserForm(forms.ModelForm):
 
 
 class UpdateProfileForm(forms.ModelForm):
+
     
-    location = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Profile
-        fields = ['location']
+        fields = []
 
 class UpdatePlayerForm(forms.ModelForm):
     
@@ -57,9 +57,20 @@ class UpdatePlayerForm(forms.ModelForm):
     ("L", "Left"), 
     ("B", "Both"), 
 ) 
+    
+    STATES = ( 
+    ("NC", "NC"), 
+    ("SC", "SC"), 
+    ("VA", "VA"), 
+    
+) 
+    
+    
 
     firstName = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     lastName = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    city = forms.CharField(required=False,widget=forms.TextInput(attrs={'class': 'form-control'}))
+    state = forms.CharField(required=False, widget=forms.Select(choices=STATES,attrs={'class': 'form-control'}))
     highSchool = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     gradYear = forms.IntegerField(required=False, widget=forms.Select(choices=GRAD_YEAR_CHOICES,attrs={'class': 'form-control'}))
     throws = forms.CharField(required=False, widget=forms.Select(choices=THROWS_HITS,attrs={'class': 'form-control'}))
@@ -80,7 +91,7 @@ class UpdatePlayerForm(forms.ModelForm):
 
     class Meta:
         model = Players
-        fields = ['firstName','lastName','highSchool','gradYear','throws','hits','picture','slug','instagramUser','xUser','pitcher','catcher','firstbase','secondbase','thirdbase','shortstop','leftfield','centerfield','rightfield']
+        fields = ['firstName','lastName','city','state','highSchool','gradYear','throws','hits','picture','slug','instagramUser','xUser','pitcher','catcher','firstbase','secondbase','thirdbase','shortstop','leftfield','centerfield','rightfield']
 
 
 

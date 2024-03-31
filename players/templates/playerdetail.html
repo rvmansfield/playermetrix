@@ -21,11 +21,11 @@
     
     <h1 class="text-center">{{ playername.firstName }} {{ playername.lastName }}</h1>
     
-    
-      <h3 class="text-center">{{ playername.highSchool }} ({{ playername.gradYear }})<br>
+    <h3 class="text-center">Hometown: {{ playername.city }}, {{ playername.state }}<br>
+      High School/Grad Year: {{ playername.highSchool }} ({{ playername.gradYear }})<br>
       Throws: {{ playername.throws }} / Hits: {{ playername.hits }}<br>
       Positions: {{ playerpositions }}<br>
-      <a target="_blank" href="https://instagram.com/{{ playername.instagramUser }}"><i class="fa-brands fa-instagram fa-lg"></i></a>&nbsp;<a target="_blank" href="https://x.com/{{ playername.xUser }}"><i class="fa-brands fa-x-twitter fa-lg"></i></h3
+      <a target="_blank" href="https://instagram.com/{{ playername.instagramUser }}"><i class="fa-brands fa-instagram fa-lg"></i></a>&nbsp;<a target="_blank" href="https://x.com/{{ playername.xUser }}"><i class="fa-brands fa-x-twitter fa-lg"></i></a>
     
     </h3>
       
@@ -38,12 +38,11 @@
   
 
       <h1 class="text-center">{{ playername.player.firstName }} {{ playername.player.lastName }}</h1>
-    
-    
-      <h3 class="text-center">{{ playername.player.highSchool }} ({{ playername.player.gradYear }})<br>
+  
+      <h3 class="text-center">Hometown: {{ playername.player.city }}, {{ playername.player.state }}<br>High School/Grad Year: {{ playername.player.highSchool }} ({{ playername.player.gradYear }})<br>
       Throws: {{ playername.player.throws }}  Hits: {{ playername.player.hits }}<br>
       Positions: {{ playerpositions }}<br>
-      <a target="_blank" href="https://instagram.com/{{ playername.player.instagramUser }}"><i class="fa-brands fa-instagram fa-lg"></i></a>&nbsp;<a target="_blank" href="https://x.com/{{ playername.player.xUser }}"><i class="fa-brands fa-x-twitter fa-lg"></i></h3>
+      <a target="_blank" href="https://instagram.com/{{ playername.player.instagramUser }}"><i class="fa-brands fa-instagram fa-lg"></i></a>&nbsp;<a target="_blank" href="https://x.com/{{ playername.player.xUser }}"><i class="fa-brands fa-x-twitter fa-lg"></i></a>
       <img class="rounded mx-auto d-block p-2" src="/media/{{playername.player.picture}}" width="240px">
       
       

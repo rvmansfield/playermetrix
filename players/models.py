@@ -4,6 +4,8 @@ from django.db import models
 class Players(models.Model):
   firstName = models.CharField(max_length=255,default=None, blank=True)
   lastName = models.CharField(max_length=255,default=None, blank=True)
+  city = models.CharField(max_length=255,blank=True,null=True,default="")
+  state = models.CharField(max_length=2,blank=True,null=True,default="")
   highSchool = models.CharField(max_length=255,default=None, blank=True)
   gradYear = models.IntegerField(default=None, blank=True)
   throws = models.CharField(max_length=5,default=None, blank=True)

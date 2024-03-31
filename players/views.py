@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.core.paginator import Paginator
 from .models import Players, Events, Details, Blog
+from members.models import Profile
 import datetime
 
 def index(request):
@@ -25,6 +26,9 @@ def services(request):
 
 def playerdetail(request,slug):
     playerinfo = Details.objects.filter(player__slug=slug)
+    
+    
+
 
 
     if playerinfo.count() < 1:
@@ -34,6 +38,8 @@ def playerdetail(request,slug):
         playerimg = playername.image
         playerevents = 0
         
+        print(playername.id)
+
         positions = ""
 
         if playername.pitcher == True:
@@ -69,7 +75,9 @@ def playerdetail(request,slug):
     else:
         playername = playerinfo[0]
         playerimg = playername.player.image
-        
+        print(playername.player.id)
+
+
         positions = ""
 
         if playername.player.pitcher == True:
@@ -92,7 +100,7 @@ def playerdetail(request,slug):
             positions = positions + "Right Field"
 
         positions = positions.rstrip("/")
-        print(positions)
+        
 
         
         template = loader.get_template('playerdetail.html')

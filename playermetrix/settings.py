@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-@nvx=l@vl&kgvcn=re=b-jg0%ung9oj*#0lrukpa(cyp%^kzth
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','www.playermetrix.com','playermetrix.com']
+ALLOWED_HOSTS = ['127.0.0.1','www.playermetrix.com','playermetrix.com','*']
 
 
 # Application definition
@@ -88,6 +88,8 @@ DATABASES = {
        'PORT':'3306',
    }
 }
+
+
 
 
 #DATABASES = {

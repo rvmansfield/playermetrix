@@ -46,7 +46,7 @@
                         <div class="row">
                                 
                             <div class="col-sm-6 py-2"><label class="fw-bold">Email</label>{{ user_form.email }}</div>
-                            <div class="col-sm-6 py-2"><label class="fw-bold">Location</label>{{ profile_form.location }}</div>
+                            
                             
                         </div>
                       </div>
@@ -55,11 +55,21 @@
 
                         
                         <h1>Player Details</h1>  
+                        {% if playerDetails.firstName %}
                         <h6><a href="/players/{{ user.username }}">View Profile Page</a></h6>
+                       
+                        {% endif %}
                             <div class="row">
                                 
                                 <div class="col-sm-6 py-4"><label class="fw-bold">Player First Name</label>{{ player_form.firstName }}</div>
                                 <div class="col-sm-6 py-4"><label class="fw-bold">Player Last Name</label>{{ player_form.lastName }}</div>
+                                
+                            </div>
+                            <div class="row">
+                                
+                                
+                                <div class="col-sm-6 py-2"><label class="fw-bold">City</label>{{ player_form.city }}</div>
+                                <div class="col-sm-6 py-2"><label class="fw-bold">State</label>{{ player_form.state }}</div>
                                 
                             </div>
                             <div class="row">
