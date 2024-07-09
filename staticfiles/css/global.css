@@ -2,6 +2,21 @@
   display:none;
 }
 
+.eventdetailsheader
+{
+
+  padding-top: 5px;
+  padding-bottom: 50px;
+
+}
+
+.floating-box {
+  float: left;
+  width: 150px;
+  height: 75px;
+  margin: 10px;
+  border: 3px solid #73AD21;  
+}
 
 
 @media 

@@ -11,9 +11,7 @@
   <div class="my-4"><h1>Events</h1>
   </div>
     
-<div class="row">
-  <div class="my-4"><h1>Events</h1>
-  </div>
+
    
 </div>
 {% for x in allevents %}
@@ -32,6 +30,12 @@
         {% if x.registration == True  %}
                         <a class="btn btn-primary" href="{{ x.id }}">Details / Register</a>
         {% endif %}
+        <div class="col-md-auto">
+          {% if x.showMetrics == True  %}
+                          <a class="btn btn-primary" href="{{ x.id }}/results">View Results</a>
+          {% endif %}
+  
+          </div>
 
         </div>
 

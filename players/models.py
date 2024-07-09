@@ -24,12 +24,14 @@ class Players(models.Model):
   leftfield = models.BooleanField(default=False)
   centerfield = models.BooleanField(default=False)
   rightfield = models.BooleanField(default=False)
+  outfield = models.BooleanField(default=False)
 
   def __str__(self):
       return f"{self.firstName} {self.lastName}"
 
   class Meta:
       verbose_name_plural = "Players"
+      ordering = ['lastName']
 
 
 class Events(models.Model):
@@ -39,6 +41,7 @@ class Events(models.Model):
   eventDetails = models.TextField(default=None, blank=True)
   link = models.CharField(max_length=100,default=None, blank=True)
   registration = models.BooleanField(default=True)
+  showMetrics = models.BooleanField(default=False)
 
   def __str__(self):
       return f"{self.title} - {self.date}"
@@ -60,12 +63,14 @@ class Details(models.Model):
   maxFB = models.IntegerField(default=None, blank=True, null=True)
   changeUp = models.IntegerField(default=None, blank=True, null=True)
   curve = models.IntegerField(default=None, blank=True, null=True)
+  slider = models.IntegerField(default=None, blank=True, null=True)
 
   def __str__(self):
       return f"{self.player} / {self.event}"
 
   class Meta:
       verbose_name_plural = "Details"
+      ordering = ['player']
 
 class Blog(models.Model):
   title = models.CharField(max_length=255)

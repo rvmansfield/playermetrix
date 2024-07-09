@@ -43,23 +43,20 @@ def playerdetail(request,slug):
         positions = ""
 
         if playername.pitcher == True:
-            positions = positions + "Pitcher/"
+            positions = positions + "P/"
         if playername.catcher == True:
-            positions = positions + "Catcher/"
+            positions = positions + "C/"
         if playername.firstbase == True:
-            positions = positions + "First Base/"
+            positions = positions + "1B/"
         if playername.secondbase == True:
-            positions = positions + "Second Base/"
+            positions = positions + "2B/"
         if playername.thirdbase == True:
-            positions = positions + "Third Base/"
+            positions = positions + "3B/"
         if playername.shortstop == True:
-            positions = positions + "Short Stop/"
-        if playername.leftfield == True:
-            positions = positions + "Left Field/"
-        if playername.centerfield == True:
-            positions = positions + "Center Field/"
-        if playername.rightfield == True:
-            positions = positions + "Right Field"
+            positions = positions + "SS/"
+        if playername.outfield == True:
+            positions = positions + "OF"
+
 
         positions = positions.rstrip("/")
         
@@ -81,23 +78,19 @@ def playerdetail(request,slug):
         positions = ""
 
         if playername.player.pitcher == True:
-            positions = positions + "Pitcher/"
+            positions = positions + "P/"
         if playername.player.catcher == True:
-            positions = positions + "Catcher/"
+            positions = positions + "C/"
         if playername.player.firstbase == True:
-            positions = positions + "First Base/"
+            positions = positions + "1B/"
         if playername.player.secondbase == True:
-            positions = positions + "Second Base/"
+            positions = positions + "2B/"
         if playername.player.thirdbase == True:
-            positions = positions + "Third Base/"
+            positions = positions + "3B/"
         if playername.player.shortstop == True:
-            positions = positions + "Short Stop/"
-        if playername.player.leftfield == True:
-            positions = positions + "Left Field/"
-        if playername.player.centerfield == True:
-            positions = positions + "Center Field/"
-        if playername.player.rightfield == True:
-            positions = positions + "Right Field"
+            positions = positions + "SS/"
+        if playername.player.outfield == True:
+            positions = positions + "OF"
 
         positions = positions.rstrip("/")
         
@@ -116,6 +109,17 @@ def eventdetail(request,id):
     template = loader.get_template('eventdetail.html')
     context = {
         'eventinfo': eventinfo,
+    }
+    return HttpResponse(template.render(context, request))
+
+def eventresults(request,id):
+    print(id)
+    eventinfo = Events.objects.get(pk=id)
+    eventdetails = Details.objects.filter(event__pk=id).order_by('player__lastName')
+    
+    template = loader.get_template('eventresults.html')
+    context = {
+        'eventinfo': eventinfo, 'eventdetails': eventdetails,
     }
     return HttpResponse(template.render(context, request))
 

@@ -7,6 +7,7 @@ urlpatterns = [
     path('events/', views.events, name='events'),
     path('players/<slug:slug>', views.playerdetail, name='playerdetail'),
     path('events/<int:id>', views.eventdetail, name='eventdetail'),
+    path('events/<int:id>/results', views.eventresults, name='eventresults'),
     path('', views.index, name='index'),
     path('register/', views.register, name='register'),
     path('contact/', views.contact, name='contact'),

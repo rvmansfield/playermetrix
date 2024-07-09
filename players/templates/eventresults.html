@@ -1,0 +1,97 @@
+{% extends "master.html" %}
+{% load static %}
+{% block title %}
+{{ eventinfo.title }} - {{ eventinfo.date }}
+{% endblock %}
+
+
+{% block content %}
+
+<script>
+  function sortTable(columnIndex) {
+      var table = document.getElementById("results");
+      var rows = Array.from(table.rows).slice(1);
+      rows.sort(function(rowA, rowB) {
+          var cellA = rowA.cells[columnIndex].innerText;
+          var cellB = rowB.cells[columnIndex].innerText;
+          if (!isNaN(cellA) && !isNaN(cellB)) {
+              return cellB - cellA; // Numerical sort for numbers
+          }
+          return cellA > cellB ? -1 : cellA < cellB ? 1 : 0; // Alphabetical sort for strings
+      });
+      rows.forEach(function(row) {
+          table.tBodies[0].appendChild(row);
+      });
+  }
+  </script>
+
+<div class="eventdetailsheader">    
+
+      <h1>{{ eventinfo.title }}</h1>
+      <h2>{{ eventinfo.location }} - {{ eventinfo.date }}</h2>
+
+</div>
+<div class="table-responsive">
+<table id="results" class="table table-striped table-hover" style="width:100%">
+          <thead class="table-dark">
+            <tr>
+                <th>Player</th>
+                <th><a class="text-light" href="javascript: sortTable(1)">IF Velo</a></th>
+                <th><a class="text-light" href="javascript: sortTable(2)">OF Velo</a></th>
+                <th><a class="text-light" href="javascript: sortTable(3)">Exit Velo</a></th>
+                <th><a class="text-light" href="javascript: sortTable(4)">60 yard</a></th>
+                <th><a class="text-light" href="javascript: sortTable(5)">Fastball</a></th>
+                <th><a class="text-light" href="javascript: sortTable(6)">Change</a></th>
+                <th><a class="text-light" href="javascript: sortTable(7)">Curve</a></th>
+                <th><a class="text-light" href="javascript: sortTable(8)">Catcher Velo</a></th>
+                <th><a class="text-light" href="javascript: sortTable(9)">Pop Time</a></th>
+            </tr>
+        </thead>        
+          <tbody>
+                  {% for x in eventdetails %}
+
+                  <tr>
+                          <td>
+                            <h3><a href="/players/{{ x.player.slug }}">{{ x.player.firstName }} {{ x.player.lastName }}</a></h3>
+                          </td>
+                          <td>
+                            <h4>{{ x.ifVelo }}</h4>
+                          </td>
+                          <td>
+                            <h4>{{ x.ofVelo }}</h4>
+                          </td>
+                          <td>
+                            <h4>{{ x.exitVelo }}</h4>
+                          </td>
+                          <td>
+                            <h4>{{ x.sixtyyard }}</h4>
+                          </td>
+                          <td>
+                            <h4>{{ x.maxFB }}</h4>
+                          </td>
+                          <td>
+                            <h4>{{ x.changeUp }}</h4>
+                          </td>
+                          <td>
+                            <h4>{{ x.curve }}</h4>
+                          </td>
+                          <td>
+                            <h4>{{ x.cVelo }}</h4>
+                          </td>
+                          <td>
+                            <h4>{{ x.popTime }}</h4>
+                          </td>
+                        
+            
+                  </tr>
+              {% endfor %}
+                </tbody>
+
+
+              </table>
+
+            </div>
+
+
+
+{% endblock %}

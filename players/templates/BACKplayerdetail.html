@@ -84,10 +84,10 @@
     
 
 
-    <div class="tab-content bg-light">
+    <div class="tab-content">
 
       {% for x in playerinfo %}
-        <div id="{{ x.event.id }}" class="tab-pane bg-light">
+        <div id="{{ x.event.id }}" class="container tab-pane bg-light">
           <script>
               if (counter < 1)  {
                   var eventid = {{ x.event.id }};
@@ -96,19 +96,55 @@
               
           </script>
         
-          <div id="{{ x.event.id }}height" title={{ x.height }} class="floating-box shadow p-4 mb-4 bg-light text-center"><h4>Height</h4><h2>{{ x.height }} in</h2></div>
-          <div id="{{ x.event.id }}weight" title={{ x.weight }} class="floating-box shadow p-4 mb-4 bg-light text-center"><h4>Weight</h4><h2>{{ x.weight }} lbs</h2></div>
-          <div id="{{ x.event.id }}ifvelo" title={{ x.ifVelo }} class="floating-box shadow p-4 mb-4 bg-light text-center"><h4>IF VELO</h4><h2>{{ x.ifVelo }} mph</h2></div>
-        
+            <div class="row bg-light">
+              <div id="{{ x.event.id }}height" title={{ x.height }} class="col-lg-6 p-4">
+                  <div class="shadow p-4 mb-4 bg-light text-center"><h4>Height</h4><h2>{{ x.height }} in</h2></div>
+              </div>
+              <div id="{{ x.event.id }}weight" title={{ x.weight }} class="col-lg-6 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>Weight</h4><h2>{{ x.weight }} lbs</h2></div>
+              </div>
+            </div>
+            <div class="row bg-light">
+              <div id="{{ x.event.id }}ifvelo" title={{ x.ifVelo }} class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>IF VELO</h4><h2>{{ x.ifVelo }} mph</h2></div>
+              </div>
+              <div id="{{ x.event.id }}ofvelo" title={{ x.ofVelo }} class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>OF VELO</h4><h2>{{ x.ofVelo }} mph</h2></div>
+              </div>
+              <div id="{{ x.event.id }}exitvelo" title={{ x.exitVelo }} class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>EXIT VELO</h4><h2>{{ x.exitVelo }} mph</h2></div>
+              </div>
               
-           
-           
-           
-           
+            </div>
+            <div class="row bg-light">
+              <div id="{{ x.event.id }}sixtyyard" title={{ x.sixtyyard }} class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>60 YARD</h4><h2>{{ x.sixtyyard }} sec</h2></div>
+              </div>
+              <div id="{{ x.event.id }}maxfb" title={{ x.maxFB }} class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>MAX FASTBALL</h4><h2>{{ x.maxFB }} mph</h2></div>
+              </div>
+              <div id="{{ x.event.id }}changeup" title={{ x.changeUp }} class="col-lg-4 p-4">
+                <div class="shadow p-4 mb-4 bg-light text-center"><h4>CHANGEUP</h4><h2>{{ x.changeUp }} mph</h2></div>
+              </div>
+            </div>
+            <div class="row bg-light">
+              <div class="col-lg-4 p-4">
+                <div id="{{ x.event.id }}curve" title={{ x.curve }} class="shadow p-4 mb-4 bg-light text-center"><h4>CURVE</h4><h2>{{ x.curve }} mph</h2></div>
+              </div>
+              <div class="col-lg-4 p-4">
+                <div id="{{ x.event.id }}cvelo" title={{ x.cVelo }} class="shadow p-4 mb-4 bg-light text-center"><h4>CATCHER VELO</h4><h2>{{ x.cVelo }} mph</h2></div>
+              </div>
+              <div class="col-lg-4 p-4">
+                <div id="{{ x.event.id }}slider" title={{ x.slider }} class="shadow p-4 mb-4 bg-light text-center"><h4>SLIDER</h4><h2>{{ x.slider }} sec</h2></div>
+              </div>
+              <div class="col-lg-4 p-4">
+                <div id="{{ x.event.id }}poptime" title={{ x.popTime }} class="shadow p-4 mb-4 bg-light text-center"><h4>POP TIME</h4><h2>{{ x.popTime }} sec</h2></div>
+              </div>
+            </div>
         </div>
       {% endfor %}
     </div>
- 
+
     <script>
 
         function changetab(eventid)  {
@@ -138,6 +174,8 @@
           
 
         
+          
+      
 
     </script>
     
