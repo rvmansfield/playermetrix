@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from decimal import Decimal
@@ -17,8 +18,23 @@ logger = logging.getLogger(__name__)
 # Create your views here.
 
 def index(request):
-    
+
     return render(request, 'main/index.html')
+
+
+def players(request):
+    from .models import PlayerProfile
+    search = request.GET.get('search', '').strip()
+    qs = PlayerProfile.objects.all().order_by('lastName', 'firstName')
+    if search:
+        qs = qs.filter(Q(firstName__icontains=search) | Q(lastName__icontains=search))
+    paginator = Paginator(qs, 20)
+    page_obj = paginator.get_page(request.GET.get('page'))
+    return render(request, 'main/players.html', {
+        'page_obj': page_obj,
+        'search': search,
+        'total': qs.count(),
+    })
 
 def contact(request):
     return render(request, 'main/contact.html')
@@ -128,19 +144,17 @@ def metrics_history(request):
 
 
 @login_required
-def add(request):
+def add(request, player_id):
     """View for capturing multiple metrics at once - requires login"""
+    from .models import PlayerProfile
+    profile = get_object_or_404(PlayerProfile, player_id=player_id, user=request.user)
     if request.method == 'POST':
         form = CaptureForm(request.POST)
         if form.is_valid():
-            # Get common data
-            player_age = form.cleaned_data['playerAge']
-            user = request.user  # Always use the logged-in user (capture requires login)
             date_captured = form.cleaned_data.get('dateCaptured')
             captured_by = form.cleaned_data.get('capturedBy')
             notes = form.cleaned_data.get('notes')
-            
-            # Save metrics for each filled field
+
             saved_count = 0
             for field_name, value in form.cleaned_data.items():
                 if field_name.startswith('metric_') and value is not None:
@@ -150,7 +164,7 @@ def add(request):
                             metricType=metric_type,
                             metric=value,
                             playerAge=form.cleaned_data.get('playerAge'),
-                            user=user,
+                            profile=profile,
                             dateCaptured=date_captured,
                             capturedBy=captured_by,
                             notes=notes
@@ -158,39 +172,38 @@ def add(request):
                         saved_count += 1
                     except Exception as e:
                         messages.error(request, f'Error saving {metric_type}: {str(e)}')
-            
+
             if saved_count > 0:
                 messages.success(request, f'Successfully saved {saved_count} metric(s)!')
-                return redirect('profile')
+                return redirect('profile_detail', player_id=profile.player_id)
             else:
                 messages.warning(request, 'No metrics were saved. Please fill in at least one metric.')
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
         form = CaptureForm()
-    
-    return render(request, 'main/add.html', {'form': form})
+
+    return render(request, 'main/add.html', {'form': form, 'profile': profile})
 
 
 @login_required
-def profile(request):
-    """Redirect to username-based profile URL for logged-in users"""
-    return redirect('profile_by_username', username=request.user.username)
-
-
-def profile_by_username(request, username):
-    """View for displaying user profile by username - publicly accessible"""
-    profile_user = get_object_or_404(User, username=username)
-    
-    # Get or create player profile (should exist due to signal, but handle edge case)
+def profile_list(request):
     from .models import PlayerProfile
-    player_profile, created = PlayerProfile.objects.get_or_create(user=profile_user)
+    profiles = PlayerProfile.objects.filter(user=request.user).order_by('created_at')
+    return render(request, 'main/profile_list.html', {'profiles': profiles})
+
+
+def profile_detail(request, player_id):
+    """View for displaying a specific player profile - publicly accessible"""
+    from .models import PlayerProfile
+    player_profile = get_object_or_404(PlayerProfile, player_id=player_id)
+    profile_user = player_profile.user
     
-    # Get all metrics for the profile user, ordered by date for charts
-    user_metrics = PlayerMetric.objects.filter(user=profile_user).order_by('dateCaptured')
-    
+    # Get all metrics for this profile, ordered by date for charts
+    user_metrics = PlayerMetric.objects.filter(profile=player_profile).order_by('dateCaptured')
+
     # Get latest metrics for each type (ordered by date descending)
-    latest_metrics_query = PlayerMetric.objects.filter(user=profile_user).order_by('-dateCaptured', '-created_at')
+    latest_metrics_query = PlayerMetric.objects.filter(profile=player_profile).order_by('-dateCaptured', '-created_at')
     latest_metrics = {}
     for metric in latest_metrics_query:
         if metric.metricType not in latest_metrics:
@@ -272,11 +285,6 @@ def evaluate(request):
     if request.method == 'POST':
         form = PlayerMetricForm(request.POST)
         if form.is_valid():
-            # Set user based on authentication status
-            if request.user.is_authenticated:
-                form.instance.user = request.user
-            else:
-                form.instance.user = None  # Anonymous user
             player_metric = form.save()
             return redirect('results', metric_id=player_metric.id)
         else:
@@ -288,20 +296,19 @@ def evaluate(request):
     return render(request, 'main/evaluate.html', {'form': form})
 
 @login_required
-def edit_profile(request):
+def edit_profile(request, profile_id):
+    from .models import PlayerProfile
+    profile = get_object_or_404(PlayerProfile, pk=profile_id, user=request.user)
     if request.method == 'POST':
-        form = PlayerProfileForm(request.POST, request.FILES, instance=request.user.player_profile)
+        form = PlayerProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             try:
                 form.save()
                 messages.success(request, 'Profile updated successfully!')
                 logger.info(f"Profile updated successfully for user: {request.user.username}")
-                return redirect('profile')
+                return redirect('profile_detail', player_id=profile.player_id)
             except Exception as e:
-                # Log the full exception for debugging
                 logger.error(f"Error uploading profile for user {request.user.username}: {str(e)}", exc_info=True)
-                
-                # Check if it's an S3 error
                 if 'S3' in str(type(e).__name__) or 'ClientError' in str(type(e).__name__):
                     messages.error(request, 'Failed to upload image to storage. Please check file size and format. If the problem persists, contact support.')
                     logger.error(f"S3 ClientError for user {request.user.username}: {str(e)}")
@@ -315,9 +322,37 @@ def edit_profile(request):
             messages.error(request, 'Please correct the errors below.')
             logger.warning(f"Form validation failed for user {request.user.username}: {form.errors}")
     else:
-        form = PlayerProfileForm(instance=request.user.player_profile)
-    
-    return render(request, 'main/edit_profile.html', {'form': form})
+        form = PlayerProfileForm(instance=profile)
+
+    return render(request, 'main/edit_profile.html', {'form': form, 'profile': profile})
+
+
+@login_required
+def profile_create(request):
+    from .models import PlayerProfile
+    if request.method == 'POST':
+        form = PlayerProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            messages.success(request, 'Profile created successfully!')
+            return redirect('profile_detail', player_id=profile.player_id)
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = PlayerProfileForm()
+    return render(request, 'main/edit_profile.html', {'form': form, 'profile': None})
+
+
+@login_required
+@require_POST
+def profile_delete(request, profile_id):
+    from .models import PlayerProfile
+    profile = get_object_or_404(PlayerProfile, pk=profile_id, user=request.user)
+    profile.delete()
+    messages.success(request, 'Profile deleted.')
+    return redirect('profile_list')
 
 
 @login_required
@@ -325,8 +360,8 @@ def playerevaluation(request):
     """View for comparing all user stats to averages - requires login"""
     user = request.user
     
-    # Get all metrics for the current user, ordered by date (most recent first)
-    user_metrics = PlayerMetric.objects.filter(user=user).order_by('-dateCaptured', '-created_at')
+    # Get all metrics across all profiles belonging to this user
+    user_metrics = PlayerMetric.objects.filter(profile__user=user).order_by('-dateCaptured', '-created_at')
     
     # Get the latest metric for each metric type
     latest_metrics = {}

@@ -82,11 +82,8 @@ class PlayerSignupForm(SignupForm):
 
 
 class PlayerProfileForm(forms.ModelForm):
-    first_name = forms.CharField(max_length=30, required=False)
-    last_name = forms.CharField(max_length=150, required=False)
-    # Allow image upload in the form; will be saved to the model ImageField
     picture = forms.ImageField(required=False)
-    
+
     positions = forms.MultipleChoiceField(
         choices=PlayerProfile.POSITION_CHOICES,
         required=False,
@@ -95,8 +92,10 @@ class PlayerProfileForm(forms.ModelForm):
 
     class Meta:
         model = PlayerProfile
-        fields = ['first_name', 'last_name', 'team', 'school', 'graduation_year', 'height_inches', 'weight_lbs', 'city', 'state', 'throws', 'hits', 'picture', 'bio']
+        fields = ['firstName', 'lastName', 'team', 'school', 'graduation_year', 'height_inches', 'weight_lbs', 'city', 'state', 'throws', 'hits', 'picture', 'bio']
         widgets = {
+            'firstName': forms.TextInput(attrs={'class': 'form-control'}),
+            'lastName': forms.TextInput(attrs={'class': 'form-control'}),
             'bio': forms.Textarea(attrs={'rows': 4}),
             'team': forms.TextInput(attrs={'class': 'form-control'}),
             'school': forms.TextInput(attrs={'class': 'form-control'}),
@@ -109,32 +108,22 @@ class PlayerProfileForm(forms.ModelForm):
             'hits': forms.Select(attrs={'class': 'form-control'}),
         }
         labels = {
+            'firstName': 'First Name',
+            'lastName': 'Last Name',
             'height_inches': 'Height (inches)',
             'weight_lbs': 'Weight (lbs)',
-            'graduation_year': 'Graduation Year'
+            'graduation_year': 'Graduation Year',
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.instance and self.instance.user:
-            self.fields['first_name'].initial = self.instance.user.first_name
-            self.fields['last_name'].initial = self.instance.user.last_name
-        # Set initial positions from the model instance
         if self.instance and self.instance.positions:
             self.fields['positions'].initial = self.instance.get_positions_list()
 
     def save(self, commit=True):
         profile = super().save(commit=False)
-        # Handle positions field
         positions_data = self.cleaned_data.get('positions', [])
-        if positions_data:
-            profile.positions = ','.join(positions_data)
-        else:
-            profile.positions = None
-        if profile.user:
-            profile.user.first_name = self.cleaned_data['first_name']
-            profile.user.last_name = self.cleaned_data['last_name']
-            profile.user.save()
+        profile.positions = ','.join(positions_data) if positions_data else None
         if commit:
             profile.save()
         return profile

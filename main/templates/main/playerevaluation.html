@@ -225,12 +225,12 @@
                 <div class="empty-state-icon">📊</div>
                 <h3>No Metrics Found</h3>
                 <p>You haven't recorded any metrics yet. Start tracking your performance to see how you compare!</p>
-                <a href="{% url 'add' %}" class="btn-back mt-3">Add Metrics</a>
+                <a href="{% url 'profile_list' %}" class="btn-back mt-3">Go to Profiles</a>
             </div>
         {% endif %}
         
         <div class="text-center mt-4">
-            <a href="{% url 'profile_by_username' username=user.username %}" class="btn-back">Back to Profile</a>
+            <a href="{% url 'profile_list' %}" class="btn-back">Back to Profile</a>
         </div>
     </div>
 {% endblock %}

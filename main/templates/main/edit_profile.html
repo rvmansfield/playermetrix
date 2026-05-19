@@ -86,7 +86,11 @@
         {% endfor %}
 
         <div class="form-group">
-            <a href="{% url 'profile' %}" class="btn btn-cancel">Cancel</a>
+            {% if profile %}
+            <a href="{% url 'profile_detail' player_id=profile.player_id %}" class="btn btn-cancel">Cancel</a>
+            {% else %}
+            <a href="{% url 'profile_list' %}" class="btn btn-cancel">Cancel</a>
+            {% endif %}
             <button type="submit" class="btn-submit">Save Changes</button>
         </div>
     </form>

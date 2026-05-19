@@ -1,9 +1,8 @@
+import re
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 User = get_user_model()
 
@@ -46,7 +45,7 @@ class PlayerMetric(models.Model):
         validators=[MinValueValidator(2018), MaxValueValidator(2032)],
         default=2026
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User', null=True, blank=True)
+    profile = models.ForeignKey('PlayerProfile', on_delete=models.SET_NULL, verbose_name='Player Profile', null=True, blank=True, related_name='metrics')
     dateCaptured = models.DateField(verbose_name='Date Captured', null=True, blank=True)
     notes = models.TextField(verbose_name='Notes', blank=True, null=True, max_length=500)
     capturedBy = models.CharField(
@@ -57,10 +56,10 @@ class PlayerMetric(models.Model):
         null=True
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    
+
     def __str__(self):
-        username = self.user.username if self.user else 'Anonymous'
-        return f"{self.metricType} - {self.metric} (GradClass {self.gradClass}) - {username}"
+        profile_label = str(self.profile) if self.profile else 'No Profile'
+        return f"{self.metricType} - {self.metric} (GradClass {self.gradClass}) - {profile_label}"
     
     class Meta:
         verbose_name = 'Player Metric'
@@ -141,8 +140,9 @@ class MetricsRange(models.Model):
 
 
 class PlayerProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='player_profile')
-    
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='player_profiles')
+    player_id = models.SlugField(max_length=255, unique=True, null=True, blank=True)
+
     # Player Info
     POSITION_CHOICES = [
         ('P', 'Pitcher'),
@@ -153,6 +153,8 @@ class PlayerProfile(models.Model):
         ('SS', 'Shortstop'),
         ('OF', 'Outfield'),
     ]
+    firstName = models.CharField(max_length=50, blank=True, null=True, verbose_name='First Name')
+    lastName = models.CharField(max_length=50, blank=True, null=True, verbose_name='Last Name')
     positions = models.CharField(max_length=200, blank=True, null=True, help_text='Comma-separated list of positions')
     team = models.CharField(max_length=100, blank=True, null=True)
     graduation_year = models.IntegerField(null=True, blank=True)
@@ -213,12 +215,27 @@ class PlayerProfile(models.Model):
         position_dict = dict(self.POSITION_CHOICES)
         return ", ".join([position_dict.get(pos, pos) for pos in positions_list])
     
-    def __str__(self):
-        return f"{self.user.username}'s Profile"
+    def _generate_player_id(self):
+        parts = [re.sub(r'[^\w]', '', p.lower()) for p in [self.firstName, self.lastName] if p]
+        base = '_'.join(parts) or 'player'
+        player_id, counter = base, 2
+        qs = PlayerProfile.objects.filter(player_id=player_id)
+        if self.pk:
+            qs = qs.exclude(pk=self.pk)
+        while qs.exists():
+            player_id = f'{base}_{counter}'
+            counter += 1
+            qs = PlayerProfile.objects.filter(player_id=player_id)
+            if self.pk:
+                qs = qs.exclude(pk=self.pk)
+        return player_id
 
-@receiver(post_save, sender=User)
-def create_or_update_player_profile(sender, instance, created, **kwargs):
-    if created:
-        PlayerProfile.objects.create(user=instance)
-    instance.player_profile.save()
+    def save(self, *args, **kwargs):
+        if not self.player_id:
+            self.player_id = self._generate_player_id()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        name = f"{self.firstName or ''} {self.lastName or ''}".strip()
+        return f"{self.user.username} - {name or f'Profile {self.pk}'}"
 

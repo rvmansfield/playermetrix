@@ -1,0 +1,112 @@
+{% extends 'main/base.html' %}
+
+{% block title %}My Profiles{% endblock %}
+
+{% block extra_css %}
+    .profiles-container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 1rem;
+    }
+    .profiles-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    .profile-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    .profile-card img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid #dee2e6;
+        flex-shrink: 0;
+    }
+    .profile-card-info {
+        flex: 1;
+    }
+    .profile-card-name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+    .profile-card-details {
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+    .profile-card-actions {
+        display: flex;
+        gap: 0.5rem;
+        flex-shrink: 0;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+{% endblock %}
+
+{% block content %}
+<div class="profiles-container">
+    <div class="profiles-header">
+        <h2>My Profiles</h2>
+        <a href="{% url 'profile_create' %}" class="btn btn-primary">+ Add New Profile</a>
+    </div>
+
+    {% if profiles %}
+        {% for profile in profiles %}
+        <div class="profile-card">
+            {% if profile.picture %}
+                <img src="{{ profile.picture.url }}" alt="Profile picture">
+            {% else %}
+                <img src="/media/player_pics/default.jpg" alt="Default picture">
+            {% endif %}
+            <div class="profile-card-info">
+                <div class="profile-card-name">
+                    {% if profile.firstName or profile.lastName %}
+                        {{ profile.firstName }} {{ profile.lastName }}
+                    {% else %}
+                        Profile {{ profile.pk }}
+                    {% endif %}
+                </div>
+                <div class="profile-card-details">
+                    {% if profile.graduation_year %}Class of {{ profile.graduation_year }}{% endif %}
+                    {% if profile.graduation_year and profile.team %} &bull; {% endif %}
+                    {% if profile.team %}{{ profile.team }}{% endif %}
+                    {% if profile.get_positions_display != "Not set" %}
+                        {% if profile.graduation_year or profile.team %} &bull; {% endif %}
+                        {{ profile.get_positions_display }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="profile-card-actions">
+                <a href="{% url 'profile_detail' player_id=profile.player_id %}" class="btn btn-sm btn-outline-primary">View</a>
+                <a href="{% url 'edit_profile' profile_id=profile.pk %}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                <form method="post" action="{% url 'profile_delete' profile_id=profile.pk %}" onsubmit="return confirm('Delete this profile?');" style="margin:0;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <h4>No profiles yet</h4>
+            <p class="text-muted">Create your first player profile to start tracking metrics.</p>
+            <a href="{% url 'profile_create' %}" class="btn btn-primary mt-2">Create Your First Profile</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

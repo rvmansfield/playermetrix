@@ -3,9 +3,9 @@ from .models import PlayerMetric, MetricsHistory, MetricsRange, PlayerProfile
 
 @admin.register(PlayerMetric)
 class PlayerMetricAdmin(admin.ModelAdmin):
-    list_display = ('metricType', 'metric', 'playerAge', 'created_at', 'user__username')
+    list_display = ('metricType', 'metric', 'playerAge', 'created_at', 'profile')
     list_filter = ('metricType',)
-    search_fields = ('metric', 'playerAge', 'user__username')
+    search_fields = ('metric', 'playerAge', 'profile__firstName', 'profile__lastName', 'profile__player_id')
     date_hierarchy = None
     ordering = ('-created_at',)
 
@@ -59,10 +59,11 @@ class MetricsRangeAdmin(admin.ModelAdmin):
 
 @admin.register(PlayerProfile)
 class PlayerProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'get_positions_display', 'team', 'graduation_year')
-    search_fields = ('user__username', 'team', 'positions')
+    list_display = ('user', 'firstName', 'lastName', 'get_positions_display', 'team', 'graduation_year', 'created_at')
+    search_fields = ('user__username', 'firstName', 'lastName', 'team', 'positions')
     list_filter = ('graduation_year',)
-    
+    readonly_fields = ('created_at', 'updated_at')
+
     def get_positions_display(self, obj):
         return obj.get_positions_display()
     get_positions_display.short_description = 'Positions'
