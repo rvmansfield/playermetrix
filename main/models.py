@@ -10,12 +10,18 @@ User = get_user_model()
 
 class PlayerMetric(models.Model):
     METRIC_TYPE_CHOICES = [
-        ('60', '60 Yard Dash (seconds)'),
+        ('sixtyyard', '60 Yard Dash (seconds)'),
         ('fbvelo', 'Fastball Velocity (mph)'),
         ('exitvelo', 'Exit Velocity (mph)'),
         ('ofvelo', 'Outfield Velocity (mph)'),
         ('ifvelo', 'Infield Velocity (mph)'),
-      
+        ('catchvelo', 'Catcher Velocity (mph)'),
+        ('poptime', 'Pop Time (seconds)'),
+        ('changeup', 'Changeup (mph)'),
+        ('curve', 'Curveball (mph)'),
+        ('slider', 'Slider (mph)'),
+        ('height', 'Height (inches)'),
+        ('weight', 'Weight (lbs)'),
     ]
     
     CAPTURED_BY_CHOICES = [
@@ -116,7 +122,7 @@ class MetricsHistory(models.Model):
 
 class MetricsRange(models.Model):
     METRIC_TYPE_CHOICES = [
-        ('60', '60 Yard Dash (seconds)'),
+        ('sixtyyard', '60 Yard Dash (seconds)'),
         ('fbvelo', 'Fastball Velocity (mph)'),
         ('exitvelo', 'Exit Velocity (mph)'),
         ('ofvelo', 'Outfield Velocity (mph)'),
@@ -158,10 +164,6 @@ class PlayerProfile(models.Model):
     positions = models.CharField(max_length=200, blank=True, null=True, help_text='Comma-separated list of positions')
     team = models.CharField(max_length=100, blank=True, null=True)
     graduation_year = models.IntegerField(null=True, blank=True)
-    
-    # Physical Attributes
-    height_inches = models.IntegerField(null=True, blank=True)
-    weight_lbs = models.IntegerField(null=True, blank=True)
     
     # Additional Fields
     bio = models.TextField(max_length=500, blank=True)
@@ -216,14 +218,14 @@ class PlayerProfile(models.Model):
         return ", ".join([position_dict.get(pos, pos) for pos in positions_list])
     
     def _generate_player_id(self):
-        parts = [re.sub(r'[^\w]', '', p.lower()) for p in [self.firstName, self.lastName] if p]
-        base = '_'.join(parts) or 'player'
+        parts = [re.sub(r'[^\w-]', '', p.lower()) for p in [self.firstName, self.lastName] if p]
+        base = '-'.join(parts) or 'player'
         player_id, counter = base, 2
         qs = PlayerProfile.objects.filter(player_id=player_id)
         if self.pk:
             qs = qs.exclude(pk=self.pk)
         while qs.exists():
-            player_id = f'{base}_{counter}'
+            player_id = f'{base}-{counter}'
             counter += 1
             qs = PlayerProfile.objects.filter(player_id=player_id)
             if self.pk:

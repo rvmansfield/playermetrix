@@ -188,7 +188,10 @@
                             <div class="metric-input-group">
                                 {{ field }}
                                 <span class="metric-unit">
-                                    {% if field.name == "metric_60" %}seconds{% else %}mph{% endif %}
+                                    {% if field.name == "metric_sixtyyard" %}seconds
+                                    {% elif field.name == "metric_height" %}inches
+                                    {% elif field.name == "metric_weight" %}lbs
+                                    {% else %}mph{% endif %}
                                 </span>
                             </div>
                         </div>

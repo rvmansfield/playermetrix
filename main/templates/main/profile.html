@@ -287,23 +287,6 @@ function fallbackCopyTextToClipboard(text, btn, btnText) {
         <div class="col-md-6 p-3 bg-white border"><div class="label">State</div>
                 <div class="value">{% if profile.state %}{{ profile.get_state_display }}{% else %}Not set{% endif %}</div></div>
 
-        <div class="col-md-6 p-3 bg-white border"><div class="label">Height</div>
-                <div class="value">
-                    {% if profile.height_inches %}
-                        {{ profile.height_inches }} inches
-                    {% else %}
-                        Not set
-                    {% endif %}
-                </div></div>
-        <div class="col-md-6 p-3 bg-white border"><div class="label">Weight</div>
-                <div class="value">
-                    {% if profile.weight_lbs %}
-                        {{ profile.weight_lbs }} lbs
-                    {% else %}
-                        Not set
-                    {% endif %}
-                </div></div>
-
     <div class="col-md-6 p-3 bg-white border"><div class="label">Graduation Year</div>
         <div class="value">{{ profile.graduation_year|default:"Not set" }}</div></div>
     <div class="col-md-6 p-3 bg-white border"><div class="label">School</div>
@@ -322,6 +305,7 @@ function fallbackCopyTextToClipboard(text, btn, btnText) {
 
     <div class="charts-grid">
         {% for metric_type, data in metrics_data.items %}
+            {% if data.has_data %}
             <div class="chart-container">
                 <h3>{{ data.display }}</h3>
                 {% if data.has_data %}
@@ -334,7 +318,7 @@ function fallbackCopyTextToClipboard(text, btn, btnText) {
                             <div class="latest-value-date">Captured on {{ data.date_captured }}</div>
                             {% if data.has_percentile %}
                                 
-                                {% if metric_type == '60' %}
+                                {% if metric_type == 'sixtyyard' %}
                                     {% if data.percentile == 0 %}
                                         <div class="percentile-badge high">
                                             Faster than the range for age {{ data.player_age }}
@@ -388,6 +372,7 @@ function fallbackCopyTextToClipboard(text, btn, btnText) {
                     </div>
                 {% endif %}
             </div>
+            {% endif %}
         {% endfor %}
     </div>
 

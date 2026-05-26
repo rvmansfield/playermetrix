@@ -211,11 +211,18 @@ def profile_detail(request, player_id):
     
     # Initialize metric data containers
     metrics_data = {
-        '60': {'dates': [], 'values': [], 'labels': [], 'display': '60 Yard Dash', 'unit': 'seconds', 'reverse': False},
-        'fbvelo': {'dates': [], 'values': [], 'labels': [], 'display': 'Fastball Velocity', 'unit': 'mph', 'reverse': False},
-        'exitvelo': {'dates': [], 'values': [], 'labels': [], 'display': 'Exit Velocity', 'unit': 'mph', 'reverse': False},
-        'ofvelo': {'dates': [], 'values': [], 'labels': [], 'display': 'Outfield Velocity', 'unit': 'mph', 'reverse': False},
-        'ifvelo': {'dates': [], 'values': [], 'labels': [], 'display': 'Infield Velocity', 'unit': 'mph', 'reverse': False},
+        'sixtyyard': {'dates': [], 'values': [], 'labels': [], 'display': '60 Yard Dash',        'unit': 'seconds', 'reverse': True},
+        'fbvelo':    {'dates': [], 'values': [], 'labels': [], 'display': 'Fastball Velocity',    'unit': 'mph',     'reverse': False},
+        'exitvelo':  {'dates': [], 'values': [], 'labels': [], 'display': 'Exit Velocity',        'unit': 'mph',     'reverse': False},
+        'ofvelo':    {'dates': [], 'values': [], 'labels': [], 'display': 'Outfield Velocity',    'unit': 'mph',     'reverse': False},
+        'ifvelo':    {'dates': [], 'values': [], 'labels': [], 'display': 'Infield Velocity',     'unit': 'mph',     'reverse': False},
+        'catchvelo': {'dates': [], 'values': [], 'labels': [], 'display': 'Catcher Velocity',     'unit': 'mph',     'reverse': False},
+        'poptime':   {'dates': [], 'values': [], 'labels': [], 'display': 'Pop Time',             'unit': 'seconds', 'reverse': True},
+        'changeup':  {'dates': [], 'values': [], 'labels': [], 'display': 'Changeup',             'unit': 'mph',     'reverse': False},
+        'curve':     {'dates': [], 'values': [], 'labels': [], 'display': 'Curveball',            'unit': 'mph',     'reverse': False},
+        'slider':    {'dates': [], 'values': [], 'labels': [], 'display': 'Slider',               'unit': 'mph',     'reverse': False},
+        'height':    {'dates': [], 'values': [], 'labels': [], 'display': 'Height',               'unit': 'inches',  'reverse': False},
+        'weight':    {'dates': [], 'values': [], 'labels': [], 'display': 'Weight',               'unit': 'lbs',     'reverse': False},
     }
     
     # Organize metrics by type

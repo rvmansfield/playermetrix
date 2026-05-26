@@ -92,7 +92,7 @@ class PlayerProfileForm(forms.ModelForm):
 
     class Meta:
         model = PlayerProfile
-        fields = ['firstName', 'lastName', 'team', 'school', 'graduation_year', 'height_inches', 'weight_lbs', 'city', 'state', 'throws', 'hits', 'picture', 'bio']
+        fields = ['firstName', 'lastName', 'team', 'school', 'graduation_year', 'city', 'state', 'throws', 'hits', 'picture', 'bio']
         widgets = {
             'firstName': forms.TextInput(attrs={'class': 'form-control'}),
             'lastName': forms.TextInput(attrs={'class': 'form-control'}),
@@ -100,8 +100,6 @@ class PlayerProfileForm(forms.ModelForm):
             'team': forms.TextInput(attrs={'class': 'form-control'}),
             'school': forms.TextInput(attrs={'class': 'form-control'}),
             'graduation_year': forms.NumberInput(attrs={'class': 'form-control'}),
-            'height_inches': forms.NumberInput(attrs={'class': 'form-control'}),
-            'weight_lbs': forms.NumberInput(attrs={'class': 'form-control'}),
             'city': forms.TextInput(attrs={'class': 'form-control'}),
             'state': forms.Select(attrs={'class': 'form-control'}),
             'throws': forms.Select(attrs={'class': 'form-control'}),
@@ -110,8 +108,6 @@ class PlayerProfileForm(forms.ModelForm):
         labels = {
             'firstName': 'First Name',
             'lastName': 'Last Name',
-            'height_inches': 'Height (inches)',
-            'weight_lbs': 'Weight (lbs)',
             'graduation_year': 'Graduation Year',
         }
 
