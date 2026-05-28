@@ -58,62 +58,38 @@
             margin: 0;
         }
         
-        .form-container {
+        .feature-card {
             background: white;
-            padding: 2rem;
             border-radius: 15px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .feature-card-img {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .feature-card-img img {
             width: 100%;
-            max-width: 500px;
-            margin: 2rem auto 0;
+            height: 100%;
+            object-fit: cover;
         }
-        .form-title {
-            text-align: center;
-            color: #333;
-            margin-bottom: 2rem;
-            font-weight: 600;
+
+        .feature-card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 1.75rem;
         }
-        .form-control {
-            border-radius: 8px;
-            border: 2px solid #e9ecef;
-            padding: 12px 15px;
-            transition: all 0.3s ease;
+
+        .feature-card-body .btn {
+            margin-top: auto;
         }
-        .form-control:focus {
-            border-color: #0d6efd;
-            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-        }
-        .btn-submit {
-            background: linear-gradient(135deg, #0d6efd 0%, #0056b3 100%);
-            border: none;
-            border-radius: 8px;
-            padding: 12px 30px;
-            color: white;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
-        }
-        
-        /* Validation styling */
-        .form-control.is-valid {
-            border-color: #28a745;
-            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-        }
-        
-        .form-control.is-invalid {
-            border-color: #dc3545;
-            box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-        }
-        
-        .numeric-hint {
-            font-size: 0.875rem;
-            color: #6c757d;
-            margin-top: 0.25rem;
-        }
-        
+
         /* Responsive design */
         @media (max-width: 768px) {
             .hero-section {
@@ -138,21 +114,6 @@
                 text-align: center;
             }
         }
-        /* Small helper used by the hanging icons feature */
-        .icon-square {
-            width: 4rem;
-            height: 4rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 0.75rem;
-            font-size: 1.5rem;
-        }
-        /* Slightly larger icon when needed */
-        .icon-square .icon-emoji {
-            font-size: 1.25rem;
-            line-height: 1;
-        }
 {% endblock %}
 
 {% block content %}
@@ -161,76 +122,58 @@
             <img src="{% static 'main/images/hero-image.jpg' %}" alt="Player Statz" id="hero-image">
         </div>
         <div class="hero-tagline">
-            <h1>Your Path to the Next Level Starts Here.</h1>
-            <p>Track your metrics and see how they compare to other players.</p>
-            <br>
-            <p>Check out our <a class="btn btn-primary" href="{% url 'evaluate' %}">Evaluation Tool</a> and see how you stack up!</p>
-            
+            <h1>Track, Compare, and Connect with the Community.</h1>
+            <p>PlayerMetrix gives you the tools to build your profile, log your metrics, browse other players, and see how you rank against age-based benchmarks.</p>
         </div>
     </div>
-    <div class="col-12 col-md-8 mx-auto mw-100 px-4 pt-4 my-4">
-        <div class="row align-items-center g-5">
-      
-          <!-- LEFT: Content -->
-          <div class="col-lg-6 text-center text-lg-start">
-            <h2 class="text-center">
-              Create your player profile and start tracking your statistics.
-            </h2>
-            <div class="d-flex justify-content-center">
-                <a class="btn btn-primary btn-lg px-4" href="{% url 'profile_list' %}">
-                  Go to Profile
-                </a>
-              </div>
-          </div>
-      
-          <!-- RIGHT: Image -->
-          <div class="col-lg-6 text-center">
-            <img
-              src="{% static 'main/images/homeprofile.png' %}"
-              class="img-fluid border shadow-lg"
-              alt="Example image"
-              width="500"
-              loading="lazy"
-            />
-          </div>
-      
-        </div>
-      </div>
+    <div class="container-fluid mt-5 px-4">
+        <div class="row g-4">
 
-      <div class="col-12 col-md-8 mx-auto mw-100 px-4 pt-4 my-4">
-        <div class="row align-items-center g-5">
-      
-          <!-- LEFT: Content -->
-          
-      
-          <!-- RIGHT: Image -->
-          <div class="col-lg-6 text-center">
-            <img
-              src="{% static 'main/images/homestats.png' %}"
-              class="img-fluid border shadow-lg"
-              alt="Example image"
-              width="500"
-              loading="lazy"
-            />
-          </div>
-      <div class="col-lg-6 text-center text-lg-start">
-            <h2 class="text-center">
-              See how your stats compare to others in the community.
-            </h2>
-            <div class="d-flex justify-content-center">
-                <a class="btn btn-primary btn-lg px-4" href="{% url 'evaluate' %}">
-                  Compare Now
-                </a>
-              </div>
-          </div>
-        </div>
-      </div>
-      
+            <!-- Card 1: Players Directory -->
+            <div class="col-12 col-md-4">
+                <div class="feature-card">
+                    <div class="feature-card-img">
+                        <img src="{% static 'main/images/homeplayer.jpg' %}" alt="Players Directory">
+                    </div>
+                    <div class="feature-card-body">
+                        <h3 class="fw-bold mb-2">Browse Players</h3>
+                        <p class="text-muted mb-4">Explore all player profiles in the community. Search by position, team, or graduation year.</p>
+                        <a class="btn btn-primary btn-lg w-100" href="{% url 'players' %}">Browse Players</a>
+                    </div>
+                </div>
+            </div>
 
-    
-    
-      
-    
-    
+            <!-- Card 2: Create a Profile -->
+            <div class="col-12 col-md-4">
+                <div class="feature-card">
+                    <div class="feature-card-img">
+                        <img src="{% static 'main/images/homeprofile.png' %}" alt="Create a Profile">
+                    </div>
+                    <div class="feature-card-body">
+                        <h3 class="fw-bold mb-2">Create a Profile</h3>
+                        <p class="text-muted mb-4">Build your player profile, log your metrics, and track your progress over time.</p>
+                        <a class="btn btn-primary btn-lg w-100" href="{% url 'profile_create' %}">Create a Profile</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Evaluation Tool -->
+            <div class="col-12 col-md-4">
+                <div class="feature-card">
+                    <div class="feature-card-img">
+                        <img src="{% static 'main/images/homestats.png' %}" alt="Create a Profile">
+                    </div>
+                    <div class="feature-card-body">
+                        <h3 class="fw-bold mb-2">Evaluation Tool</h3>
+                        <p class="text-muted mb-4">Enter a metric value and see how you rank against age-based benchmarks in the community.</p>
+                        <a class="btn btn-primary btn-lg w-100" href="{% url 'evaluate' %}">Try It Now</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
 {% endblock %}
 
