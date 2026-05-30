@@ -166,7 +166,7 @@ class PlayerProfile(models.Model):
     graduation_year = models.IntegerField(null=True, blank=True)
     
     # Additional Fields
-    bio = models.TextField(max_length=500, blank=True)
+    bio = models.TextField(max_length=500, blank=True, null=True)
     # Location and picture
     city = models.CharField(max_length=100, blank=True, null=True)
 
