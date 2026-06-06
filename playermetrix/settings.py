@@ -111,6 +111,24 @@ WSGI_APPLICATION = 'playermetrix.wsgi.application'
 #}
 
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
+
+
 
 DATABASES = {
     'default': dj_database_url.config(
