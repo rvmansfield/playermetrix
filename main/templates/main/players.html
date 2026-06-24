@@ -104,11 +104,7 @@
         <div class="profiles-grid">
         {% for profile in page_obj %}
         <div class="profile-card">
-            {% if profile.picture %}
-                <img src="{{ profile.picture.url }}" alt="Profile picture">
-            {% else %}
-                <img src="/media/player_pics/default.jpg" alt="Default picture">
-            {% endif %}
+            <img src="{{ profile.picture.url }}" alt="Profile picture">
             <div class="profile-card-info">
                 <div class="profile-card-name">
                     {% if profile.firstName or profile.lastName %}
