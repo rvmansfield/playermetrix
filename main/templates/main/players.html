@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load static %}
 
 {% block title %}Players{% endblock %}
 
@@ -104,7 +105,11 @@
         <div class="profiles-grid">
         {% for profile in page_obj %}
         <div class="profile-card">
-            <img src="{{ profile.picture.url }}" alt="Profile picture">
+            {% if profile.picture %}
+                <img src="{{ profile.picture.url }}" alt="Profile picture">
+            {% else %}
+                <img src="{% static 'main/images/PMlogo.webp' %}" alt="Default picture">
+            {% endif %}
             <div class="profile-card-info">
                 <div class="profile-card-name">
                     {% if profile.firstName or profile.lastName %}

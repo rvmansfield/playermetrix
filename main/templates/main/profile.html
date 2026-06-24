@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load static %}
 
 {% block title %}{{ profile.firstName }} {{ profile.lastName }}'s Profile{% endblock %}
 
@@ -250,7 +251,11 @@ function fallbackCopyTextToClipboard(text, btn, btnText) {
       <div class="p-3 bg-white border h-100 d-flex flex-column align-items-center">
         <h2 class="text-center mb-3">{{ profile.firstName }} {{ profile.lastName }}</h2>
 
-        <img src="{{ profile.picture.url }}" alt="{{ profile.firstName }} {{ profile.lastName }} picture" class="img-fluid mb-3" style="max-width:250px; max-height:200px; border-radius:8px;" />
+        {% if profile.picture %}
+          <img src="{{ profile.picture.url }}" alt="{{ profile.firstName }} {{ profile.lastName }} picture" class="img-fluid mb-3" style="max-width:250px; max-height:200px; border-radius:8px;" />
+        {% else %}
+          <img src="{% static 'main/images/PMlogo.webp' %}" alt="Default picture" class="img-fluid mb-3" style="max-width:250px; max-height:200px; border-radius:8px;" />
+        {% endif %}
       <!--
         <img src="{{ model.image.url }}" alt="{{ profile.firstName }} {{ profile.lastName }} picture" class="img-fluid mb-3" style="max-width:250px; max-height:200px; border-radius:8px;" />
         -->
