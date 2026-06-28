@@ -203,6 +203,13 @@ class PlayerProfile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def picture_url(self):
+        if self.picture:
+            return self.picture.url
+        from django.core.files.storage import default_storage
+        return default_storage.url('player_pics/default.jpg')
+
     def get_positions_list(self):
         """Return positions as a list of position codes"""
         if self.positions:
