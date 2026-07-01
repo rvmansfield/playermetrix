@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import PlayerMetric, MetricsHistory, MetricsRange, PlayerProfile
+from .models import PlayerMetric, MetricsHistory, MetricsRange, PlayerProfile, Event
 
 @admin.register(PlayerMetric)
 class PlayerMetricAdmin(admin.ModelAdmin):
@@ -56,6 +56,14 @@ class MetricsRangeAdmin(admin.ModelAdmin):
             'fields': ('Min', 'Max', 'Avg')
         }),
     )
+
+@admin.register(Event)
+class EventAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date', 'location', 'active')
+    list_filter = ('active',)
+    search_fields = ('title', 'location')
+    ordering = ('date',)
+    list_editable = ('active',)
 
 @admin.register(PlayerProfile)
 class PlayerProfileAdmin(admin.ModelAdmin):

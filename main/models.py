@@ -52,6 +52,7 @@ class PlayerMetric(models.Model):
         default=2026
     )
     profile = models.ForeignKey('PlayerProfile', on_delete=models.SET_NULL, verbose_name='Player Profile', null=True, blank=True, related_name='metrics')
+    event = models.ForeignKey('Event', on_delete=models.SET_NULL, verbose_name='Event', null=True, blank=True, related_name='metrics')
     dateCaptured = models.DateField(verbose_name='Date Captured', null=True, blank=True)
     notes = models.TextField(verbose_name='Notes', blank=True, null=True, max_length=500)
     capturedBy = models.CharField(
@@ -248,3 +249,16 @@ class PlayerProfile(models.Model):
         name = f"{self.firstName or ''} {self.lastName or ''}".strip()
         return f"{self.user.username} - {name or f'Profile {self.pk}'}"
 
+
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    location = models.CharField(max_length=200, blank=True)
+    date = models.DateField()
+    details = models.TextField(blank=True)
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['date']
+
+    def __str__(self):
+        return f"{self.title} ({self.date})"
