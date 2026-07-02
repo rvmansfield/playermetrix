@@ -132,6 +132,21 @@
             }
         }
         
+        .nav-primary-link {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #0d6efd;
+            letter-spacing: 0.02em;
+            padding: 0.4rem 0.75rem;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+        .nav-primary-link:hover,
+        .nav-primary-link:focus {
+            color: #0056b3;
+            border-bottom-color: #0056b3;
+        }
+
         /* Additional styles for specific pages */
         {% block extra_css %}{% endblock %}
     </style>
@@ -176,43 +191,28 @@
     </button>
 
     <!-- Collapsible menu -->
-    <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
-      <div class="navbar-nav align-items-md-center gap-2 mt-3 mt-md-0">
+    <div class="collapse navbar-collapse" id="mainNavbar">
 
-        <a class="btn btn-outline-secondary btn-sm px-3"
-           href="{% url 'players' %}">
-          Players
-        </a>
+      <!-- Center: primary nav links -->
+      <div class="navbar-nav mx-auto gap-2 mt-3 mt-lg-0">
+        <a class="nav-link nav-primary-link" href="{% url 'players' %}">Players</a>
+        <a class="nav-link nav-primary-link" href="{% url 'events' %}">Events</a>
+      </div>
 
+      <!-- Right: auth -->
+      <div class="navbar-nav align-items-lg-center gap-2 mt-3 mt-lg-0">
         {% if user.is_authenticated %}
-          <span class="nav-item nav-link text-muted fw-semibold text-center">
+          <span class="nav-item nav-link text-muted fw-semibold">
             Welcome, <strong>{{ user.username }}</strong>
           </span>
-
-          <a class="btn btn-primary btn-sm px-3"
-             href="{% url 'profile_list' %}">
-            Profile
-          </a>
-
-          
-
-          <a class="btn btn-danger btn-sm px-3"
-             href="{% url 'account_logout' %}">
-            Logout
-          </a>
+          <a class="btn btn-primary btn-sm px-3" href="{% url 'profile_list' %}">Profile</a>
+          <a class="btn btn-danger btn-sm px-3" href="{% url 'account_logout' %}">Logout</a>
         {% else %}
-          <a class="btn btn-primary btn-sm px-3"
-             href="{% url 'account_login' %}">
-            Login
-          </a>
-
-          <a class="btn btn-outline-primary btn-sm px-3"
-             href="{% url 'account_signup' %}">
-            Sign Up
-          </a>
+          <a class="btn btn-primary btn-sm px-3" href="{% url 'account_login' %}">Login</a>
+          <a class="btn btn-outline-primary btn-sm px-3" href="{% url 'account_signup' %}">Sign Up</a>
         {% endif %}
-
       </div>
+
     </div>
 
   </div>

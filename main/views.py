@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from decimal import Decimal
 from .forms import PlayerMetricForm, CaptureForm, PlayerProfileForm
-from .models import PlayerMetric, MetricsHistory, MetricsRange
+from .models import PlayerMetric, MetricsHistory, MetricsRange, Event
 import json
 import logging
 
@@ -425,3 +425,51 @@ def playerevaluation(request):
     }
     
     return render(request, 'main/playerevaluation.html', context)
+
+
+def events(request):
+    events = Event.objects.filter(active=True).order_by('-date')
+    return render(request, 'main/events.html', {'events': events})
+
+
+def event_detail(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
+    metrics = event.metrics.select_related('profile').order_by('profile__lastName', 'profile__firstName')
+
+    # Preferred column order matching METRIC_TYPE_CHOICES
+    metric_order = ['sixtyyard', 'fbvelo', 'exitvelo', 'ofvelo', 'ifvelo', 'catchvelo',
+                    'poptime', 'changeup', 'curve', 'slider', 'height', 'weight']
+    metric_labels = {
+        'sixtyyard': '60 Yard', 'fbvelo': 'FB Velo', 'exitvelo': 'Exit Velo',
+        'ofvelo': 'OF Velo', 'ifvelo': 'IF Velo', 'catchvelo': 'C Velo',
+        'poptime': 'Pop Time', 'changeup': 'Changeup', 'curve': 'Curve',
+        'slider': 'Slider', 'height': 'Height', 'weight': 'Weight',
+    }
+
+    # Collect which metric types actually appear in this event's data
+    present_types = set(metrics.values_list('metricType', flat=True))
+    columns = [mt for mt in metric_order if mt in present_types]
+
+    # Build one row per player with values pre-ordered to match columns
+    players_map = {}
+    for m in metrics:
+        key = m.profile_id
+        if key not in players_map:
+            players_map[key] = {'profile': m.profile, 'values': {}}
+        players_map[key]['values'][m.metricType] = m.metric
+
+    player_rows = [
+        {
+            'profile': p['profile'],
+            'row_values': [p['values'].get(col) for col in columns],
+        }
+        for p in players_map.values()
+    ]
+
+    column_labels = [metric_labels[col] for col in columns]
+
+    return render(request, 'main/event_detail.html', {
+        'event': event,
+        'player_rows': player_rows,
+        'column_labels': column_labels,
+    })

@@ -14,5 +14,7 @@ urlpatterns = [
     path('profile/<int:profile_id>/edit/', views.edit_profile, name='edit_profile'),
     path('profile/<int:profile_id>/delete/', views.profile_delete, name='profile_delete'),
     path('playerevaluation/', views.playerevaluation, name='playerevaluation'),
+    path('events/', views.events, name='events'),
+    path('events/<int:event_id>/', views.event_detail, name='event_detail'),
     path('player/<slug:player_id>/', views.profile_detail, name='profile_detail'),
 ]

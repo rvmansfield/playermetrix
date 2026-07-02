@@ -1,0 +1,168 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Player Metrix{% endblock %}
+
+{% block extra_css %}
+    .event-detail-container {
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+    .event-header {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .event-header h2 {
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+    .event-header .meta {
+        color: #6c757d;
+        font-size: 0.95rem;
+    }
+    .grid-wrapper {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        overflow-x: auto;
+    }
+    .grid-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+    .grid-table thead th {
+        background: #f8f9fa;
+        color: #6c757d;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 0.75rem 1rem;
+        border-bottom: 2px solid #dee2e6;
+        text-align: center;
+    }
+    .grid-table thead th.player-col {
+        text-align: left;
+    }
+    .grid-table tbody tr:nth-child(even) {
+        background: #f8f9fa;
+    }
+    .grid-table tbody tr:hover {
+        background: #e9f0ff;
+    }
+    .grid-table td {
+        padding: 0.65rem 1rem;
+        border-bottom: 1px solid #dee2e6;
+        text-align: center;
+        color: #333;
+    }
+    .grid-table td.player-col {
+        text-align: left;
+        font-weight: 600;
+        min-width: 160px;
+    }
+    .grid-table td.player-col a {
+        color: #0d6efd;
+        text-decoration: none;
+    }
+    .grid-table td.player-col a:hover {
+        text-decoration: underline;
+    }
+    .grid-table td.player-col .grad-year {
+        font-weight: 400;
+        color: #6c757d;
+        font-size: 0.8rem;
+        margin-left: 0.35rem;
+    }
+    .grid-table td.empty-cell {
+        color: #ced4da;
+    }
+    /* Sticky player name column */
+    .grid-table th.player-col,
+    .grid-table td.player-col {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        background: inherit;
+        border-right: 2px solid #dee2e6;
+    }
+    .grid-table thead th.player-col {
+        background: #f8f9fa;
+        z-index: 2;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 3rem 2rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+{% endblock %}
+
+{% block content %}
+<div class="event-detail-container">
+
+    <div class="event-header">
+        <a href="{% url 'events' %}" class="btn btn-sm btn-outline-secondary mb-3">&larr; Back to Events</a>
+        <h2>{{ event.title }}</h2>
+        <div class="meta">
+            <span>📅 {{ event.date }}</span>
+            {% if event.location %}&bull; <span>📍 {{ event.location }}</span>{% endif %}
+        </div>
+        {% if event.details %}
+            <p class="text-muted mt-2 mb-0">{{ event.details }}</p>
+        {% endif %}
+    </div>
+
+    {% if player_rows %}
+    <div class="grid-wrapper">
+        <table class="grid-table">
+            <thead>
+                <tr>
+                    <th class="player-col">Player</th>
+                    {% for label in column_labels %}
+                        <th>{{ label }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in player_rows %}
+                <tr>
+                    <td class="player-col">
+                        {% if player.profile %}
+                            <a href="{% url 'profile_detail' player_id=player.profile.player_id %}">
+                                {{ player.profile.firstName }} {{ player.profile.lastName }}
+                            </a>
+                            {% if player.profile.graduation_year %}
+                                <span class="grad-year">'{{ player.profile.graduation_year|stringformat:"s"|slice:"2:" }}</span>
+                            {% endif %}
+                        {% else %}
+                            Unknown Player
+                        {% endif %}
+                    </td>
+                    {% for val in player.row_values %}
+                        {% if val %}
+                            <td>{{ val }}</td>
+                        {% else %}
+                            <td class="empty-cell">&mdash;</td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="empty-state">
+            <h5>No player metrics recorded for this event.</h5>
+            <p class="text-muted mb-0">Metrics linked to this event will appear here.</p>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}
