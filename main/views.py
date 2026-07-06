@@ -38,6 +38,7 @@ def players(request):
 
     grad_years = (PlayerProfile.objects
                   .exclude(graduation_year__isnull=True)
+                  .exclude(graduation_year=0)
                   .values_list('graduation_year', flat=True)
                   .distinct()
                   .order_by('graduation_year'))
