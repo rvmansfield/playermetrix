@@ -88,14 +88,30 @@
     </div>
 
     <form method="get" action="" class="search-bar">
-        <div class="input-group">
+        <div class="d-flex flex-wrap gap-2 align-items-center">
             <input type="text"
                    name="search"
                    class="form-control"
-                   placeholder="Search by first or last name…"
+                   style="max-width:280px;"
+                   placeholder="Search by name…"
                    value="{{ search }}">
+
+            <select name="grad_year" class="form-select" style="max-width:160px;">
+                <option value="">All Grad Years</option>
+                {% for yr in grad_years %}
+                    <option value="{{ yr }}" {% if grad_year == yr|stringformat:"s" %}selected{% endif %}>{{ yr }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="position" class="form-select" style="max-width:160px;">
+                <option value="">All Positions</option>
+                {% for code, label in position_choices %}
+                    <option value="{{ code }}" {% if position == code %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+
             <button class="btn btn-primary" type="submit">Search</button>
-            {% if search %}
+            {% if search or grad_year or position %}
                 <a href="{% url 'players' %}" class="btn btn-outline-secondary">Clear</a>
             {% endif %}
         </div>
@@ -141,7 +157,7 @@
                 <ul class="pagination">
                     {% if page_obj.has_previous %}
                         <li class="page-item">
-                            <a class="page-link" href="?{% if search %}search={{ search }}&{% endif %}page={{ page_obj.previous_page_number }}">Previous</a>
+                            <a class="page-link" href="?{% if search %}search={{ search }}&{% endif %}{% if grad_year %}grad_year={{ grad_year }}&{% endif %}{% if position %}position={{ position }}&{% endif %}page={{ page_obj.previous_page_number }}">Previous</a>
                         </li>
                     {% else %}
                         <li class="page-item disabled">
@@ -156,14 +172,14 @@
                             </li>
                         {% elif num >= page_obj.number|add:"-3" and num <= page_obj.number|add:"3" %}
                             <li class="page-item">
-                                <a class="page-link" href="?{% if search %}search={{ search }}&{% endif %}page={{ num }}">{{ num }}</a>
+                                <a class="page-link" href="?{% if search %}search={{ search }}&{% endif %}{% if grad_year %}grad_year={{ grad_year }}&{% endif %}{% if position %}position={{ position }}&{% endif %}page={{ num }}">{{ num }}</a>
                             </li>
                         {% endif %}
                     {% endfor %}
 
                     {% if page_obj.has_next %}
                         <li class="page-item">
-                            <a class="page-link" href="?{% if search %}search={{ search }}&{% endif %}page={{ page_obj.next_page_number }}">Next</a>
+                            <a class="page-link" href="?{% if search %}search={{ search }}&{% endif %}{% if grad_year %}grad_year={{ grad_year }}&{% endif %}{% if position %}position={{ position }}&{% endif %}page={{ page_obj.next_page_number }}">Next</a>
                         </li>
                     {% else %}
                         <li class="page-item disabled">
@@ -177,9 +193,9 @@
 
     {% else %}
         <div class="empty-state">
-            {% if search %}
+            {% if search or grad_year or position %}
                 <h4>No players found</h4>
-                <p class="text-muted">No players match "{{ search }}". <a href="{% url 'players' %}">Clear search</a></p>
+                <p class="text-muted">No players match the selected filters. <a href="{% url 'players' %}">Clear filters</a></p>
             {% else %}
                 <h4>No players yet</h4>
                 <p class="text-muted">Player profiles will appear here once created.</p>

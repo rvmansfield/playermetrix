@@ -24,15 +24,33 @@ def index(request):
 
 def players(request):
     from .models import PlayerProfile
-    search = request.GET.get('search', '').strip()
+    search   = request.GET.get('search', '').strip()
+    grad_year = request.GET.get('grad_year', '').strip()
+    position  = request.GET.get('position', '').strip()
+
     qs = PlayerProfile.objects.all().order_by('lastName', 'firstName')
     if search:
         qs = qs.filter(Q(firstName__icontains=search) | Q(lastName__icontains=search))
+    if grad_year:
+        qs = qs.filter(graduation_year=grad_year)
+    if position:
+        qs = qs.filter(positions__icontains=position)
+
+    grad_years = (PlayerProfile.objects
+                  .exclude(graduation_year__isnull=True)
+                  .values_list('graduation_year', flat=True)
+                  .distinct()
+                  .order_by('graduation_year'))
+
     paginator = Paginator(qs, 20)
     page_obj = paginator.get_page(request.GET.get('page'))
     return render(request, 'main/players.html', {
         'page_obj': page_obj,
         'search': search,
+        'grad_year': grad_year,
+        'position': position,
+        'grad_years': grad_years,
+        'position_choices': PlayerProfile.POSITION_CHOICES,
         'total': qs.count(),
     })
 
