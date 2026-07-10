@@ -10,7 +10,7 @@ services:
     name: playermetrix
     runtime: python
     buildCommand: './build.sh'
-    startCommand: 'python -m gunicorn playermetrix.asgi:application -k uvicorn.workers.UvicornWorker'
+    startCommand: 'python -m gunicorn playermetrix.asgi:application -k uvicorn.workers.UvicornWorker --max-requests 1000 --max-requests-jitter 100'
     envVars:
       - key: DATABASE_URL
         fromDatabase:
