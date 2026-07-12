@@ -1,0 +1,32 @@
+WARNING 2026-07-12 14:28:02,505 log: Not Found: /media/player_pics/Austin_Clark.JPG
+WARNING 2026-07-12 14:28:02,506 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7169
+ERROR 2026-07-12 14:28:29,241 log: Internal Server Error: /players/caden-bailey/
+Traceback (most recent call last):
+  File "C:\Code\PlayerMetrix\playermetrix\main\views.py", line 263, in profile_detail
+    metrics_range = MetricsRange.objects.get(
+        metricType=metric_type,
+        playerAge=player_age
+    )
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\query.py", line 633, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+main.models.MetricsRange.DoesNotExist: MetricsRange matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Code\PlayerMetrix\playermetrix\main\views.py", line 274, in profile_detail
+    metrics_data[metric_type]['latest_value'] = float(metric.metric)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'cvelo'
+ERROR 2026-07-12 14:28:29,244 basehttp: "GET /players/caden-bailey/ HTTP/1.1" 500 105998
+WARNING 2026-07-12 14:28:29,402 log: Not Found: /favicon.ico
+WARNING 2026-07-12 14:28:29,403 basehttp: "GET /favicon.ico HTTP/1.1" 404 7210
