@@ -30,3 +30,133 @@ KeyError: 'cvelo'
 ERROR 2026-07-12 14:28:29,244 basehttp: "GET /players/caden-bailey/ HTTP/1.1" 500 105998
 WARNING 2026-07-12 14:28:29,402 log: Not Found: /favicon.ico
 WARNING 2026-07-12 14:28:29,403 basehttp: "GET /favicon.ico HTTP/1.1" 404 7210
+ERROR 2026-07-12 17:28:05,467 log: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\utils\deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\http\request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2026-07-12 17:28:05,470 basehttp: "GET / HTTP/1.1" 400 76946
+ERROR 2026-07-12 17:28:31,709 log: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\utils\deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\http\request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2026-07-12 17:28:31,713 basehttp: "GET / HTTP/1.1" 400 77098
+ERROR 2026-07-12 17:28:51,535 log: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\utils\deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\http\request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2026-07-12 17:28:51,537 basehttp: "GET / HTTP/1.1" 400 77042
+ERROR 2026-07-12 17:29:28,291 log: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\utils\deprecation.py", line 119, in __call__
+    response = self.process_request(request)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\http\request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2026-07-12 17:29:28,293 basehttp: "GET / HTTP/1.1" 400 76974
+WARNING 2026-07-12 17:48:31,231 log: Not Found: /media/player_pics/Austin_Clark.JPG
+WARNING 2026-07-12 17:48:31,232 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7169
+WARNING 2026-07-12 17:48:34,180 log: Not Found: /media/player_pics/Nordlander_Ryan.JPG
+WARNING 2026-07-12 17:48:34,182 basehttp: "GET /media/player_pics/Nordlander_Ryan.JPG HTTP/1.1" 404 7181
+WARNING 2026-07-12 17:48:34,198 log: Not Found: /media/player_pics/wood-parker.jpg
+WARNING 2026-07-12 17:48:34,200 basehttp: "GET /media/player_pics/wood-parker.jpg HTTP/1.1" 404 7165
+WARNING 2026-07-12 17:48:34,238 log: Not Found: /media/player_pics/houston-poole.jpg
+WARNING 2026-07-12 17:48:34,245 log: Not Found: /media/player_pics/Preston_Owen.JPG
+WARNING 2026-07-12 17:48:34,246 basehttp: "GET /media/player_pics/Preston_Owen.JPG HTTP/1.1" 404 7169
+WARNING 2026-07-12 17:48:34,246 basehttp: "GET /media/player_pics/houston-poole.jpg HTTP/1.1" 404 7173
+WARNING 2026-07-12 17:48:34,268 log: Not Found: /media/player_pics/andrew-riedel.jpg
+WARNING 2026-07-12 17:48:34,272 log: Not Found: /media/player_pics/Reese_Gregg.JPG
+WARNING 2026-07-12 17:48:34,275 basehttp: "GET /media/player_pics/andrew-riedel.jpg HTTP/1.1" 404 7173
+WARNING 2026-07-12 17:48:34,275 basehttp: "GET /media/player_pics/Reese_Gregg.JPG HTTP/1.1" 404 7165
+WARNING 2026-07-12 17:48:34,309 log: Not Found: /media/player_pics/xander-ryan.jpg
+WARNING 2026-07-12 17:48:34,315 log: Not Found: /media/player_pics/Sawyer_Cooper.JPG
+WARNING 2026-07-12 17:48:34,319 log: Not Found: /media/player_pics/alejandro-sardi.jpg
+WARNING 2026-07-12 17:48:34,321 basehttp: "GET /media/player_pics/Sawyer_Cooper.JPG HTTP/1.1" 404 7173
+WARNING 2026-07-12 17:48:34,321 basehttp: "GET /media/player_pics/alejandro-sardi.jpg HTTP/1.1" 404 7181
+WARNING 2026-07-12 17:48:34,321 basehttp: "GET /media/player_pics/xander-ryan.jpg HTTP/1.1" 404 7165
+WARNING 2026-07-12 17:48:34,334 log: Not Found: /media/player_pics/bennett-selvage.jpg
+WARNING 2026-07-12 17:48:34,334 basehttp: "GET /media/player_pics/bennett-selvage.jpg HTTP/1.1" 404 7181
+WARNING 2026-07-12 17:48:34,343 log: Not Found: /media/player_pics/kyle-shaheen.jpg
+WARNING 2026-07-12 17:48:34,347 basehttp: "GET /media/player_pics/kyle-shaheen.jpg HTTP/1.1" 404 7169
+WARNING 2026-07-12 17:48:34,383 log: Not Found: /media/player_pics/noah-sugg.jpg
+WARNING 2026-07-12 17:48:34,384 basehttp: "GET /media/player_pics/noah-sugg.jpg HTTP/1.1" 404 7157
+WARNING 2026-07-12 17:48:34,438 log: Not Found: /media/player_pics/jonathan-vinson jr..jpg
+WARNING 2026-07-12 17:48:34,440 basehttp: "GET /media/player_pics/jonathan-vinson%20jr..jpg HTTP/1.1" 404 7199
+WARNING 2026-07-12 17:48:34,449 log: Not Found: /media/player_pics/Weston_Taylor.JPG
+WARNING 2026-07-12 17:48:34,453 basehttp: "GET /media/player_pics/Weston_Taylor.JPG HTTP/1.1" 404 7173
+WARNING 2026-07-12 17:48:34,531 log: Not Found: /media/player_pics/jt-williams.jpg
+WARNING 2026-07-12 17:48:34,534 basehttp: "GET /media/player_pics/jt-williams.jpg HTTP/1.1" 404 7165
+WARNING 2026-07-12 17:48:34,571 log: Not Found: /media/player_pics/Austin_Clark.JPG
+WARNING 2026-07-12 17:48:34,575 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7169
+WARNING 2026-07-12 17:48:34,580 log: Not Found: /media/caleb-waters.jpg
+WARNING 2026-07-12 17:48:34,584 basehttp: "GET /media/caleb-waters.jpg HTTP/1.1" 404 7121
+WARNING 2026-07-12 17:48:34,599 log: Not Found: /media/player_pics/Beckett_Kaltenbach.JPG
+WARNING 2026-07-12 17:48:34,605 basehttp: "GET /media/player_pics/Beckett_Kaltenbach.JPG HTTP/1.1" 404 7193
+WARNING 2026-07-12 17:48:34,610 log: Not Found: /media/player_pics/Bennett_Zane.JPG
+WARNING 2026-07-12 17:48:34,612 basehttp: "GET /media/player_pics/Bennett_Zane.JPG HTTP/1.1" 404 7169
+WARNING 2026-07-12 17:48:34,670 log: Not Found: /media/player_pics/Cannon_Tyler.JPG
+WARNING 2026-07-12 17:48:34,671 basehttp: "GET /media/player_pics/Cannon_Tyler.JPG HTTP/1.1" 404 7169
+WARNING 2026-07-12 17:48:34,696 log: Not Found: /media/player_pics/Catrone_Jack.JPG
+WARNING 2026-07-12 17:48:34,697 basehttp: "GET /media/player_pics/Catrone_Jack.JPG HTTP/1.1" 404 7169
+WARNING 2026-07-12 17:48:34,705 log: Not Found: /media/player_pics/Colton_Briggs.JPG
+WARNING 2026-07-12 17:48:34,709 basehttp: "GET /media/player_pics/Colton_Briggs.JPG HTTP/1.1" 404 7173
+WARNING 2026-07-12 17:48:34,728 log: Not Found: /media/player_pics/Derrigrand_Sean.JPG
+WARNING 2026-07-12 17:48:34,729 basehttp: "GET /media/player_pics/Derrigrand_Sean.JPG HTTP/1.1" 404 7181
+WARNING 2026-07-12 17:48:34,740 log: Not Found: /media/player_pics/Drew_Nordlander.JPG
+WARNING 2026-07-12 17:48:34,742 basehttp: "GET /media/player_pics/Drew_Nordlander.JPG HTTP/1.1" 404 7181
+WARNING 2026-07-12 17:48:34,761 log: Not Found: /media/player_pics/Evan_Shelby.JPG
+WARNING 2026-07-12 17:48:34,762 basehttp: "GET /media/player_pics/Evan_Shelby.JPG HTTP/1.1" 404 7165
+WARNING 2026-07-12 17:48:34,771 log: Not Found: /media/player_pics/bennett-ferguson.jpg
+WARNING 2026-07-12 17:48:34,773 basehttp: "GET /media/player_pics/bennett-ferguson.jpg HTTP/1.1" 404 7185
+WARNING 2026-07-12 17:48:34,797 log: Not Found: /media/player_pics/keri-fitzsimmons.jpg
+WARNING 2026-07-12 17:48:34,799 basehttp: "GET /media/player_pics/keri-fitzsimmons.jpg HTTP/1.1" 404 7185
+WARNING 2026-07-12 17:48:34,832 log: Not Found: /media/player_pics/jackson-harrell.jpg
+WARNING 2026-07-12 17:48:34,834 basehttp: "GET /media/player_pics/jackson-harrell.jpg HTTP/1.1" 404 7181
+WARNING 2026-07-12 17:48:34,844 log: Not Found: /media/player_pics/owen-heafner.jpg
+WARNING 2026-07-12 17:48:34,846 basehttp: "GET /media/player_pics/owen-heafner.jpg HTTP/1.1" 404 7169
+WARNING 2026-07-12 17:48:34,871 log: Not Found: /media/player_pics/dayne-hunter.jpg
+WARNING 2026-07-12 17:48:34,871 basehttp: "GET /media/player_pics/dayne-hunter.jpg HTTP/1.1" 404 7169
+WARNING 2026-07-12 17:48:34,880 log: Not Found: /media/player_pics/Isaiah_Blount.JPG
+WARNING 2026-07-12 17:48:34,884 log: Not Found: /media/player_pics/Jace_Jones.JPG
+WARNING 2026-07-12 17:48:34,889 log: Not Found: /media/player_pics/Jack_Wride.JPG
+WARNING 2026-07-12 17:48:34,892 basehttp: "GET /media/player_pics/Jace_Jones.JPG HTTP/1.1" 404 7161
+WARNING 2026-07-12 17:48:34,892 basehttp: "GET /media/player_pics/Isaiah_Blount.JPG HTTP/1.1" 404 7173
+WARNING 2026-07-12 17:48:34,892 basehttp: "GET /media/player_pics/Jack_Wride.JPG HTTP/1.1" 404 7161
+WARNING 2026-07-12 17:48:34,909 log: Not Found: /media/player_pics/Keagan_Drake.JPG
+WARNING 2026-07-12 17:48:34,910 basehttp: "GET /media/player_pics/Keagan_Drake.JPG HTTP/1.1" 404 7169
+WARNING 2026-07-12 17:48:34,928 log: Not Found: /media/player_pics/Lawson_Jaillett.JPG
+WARNING 2026-07-12 17:48:34,930 basehttp: "GET /media/player_pics/Lawson_Jaillett.JPG HTTP/1.1" 404 7181
+WARNING 2026-07-12 17:48:34,945 log: Not Found: /media/player_pics/Luke_Botzum.JPG
+WARNING 2026-07-12 17:48:34,948 basehttp: "GET /media/player_pics/Luke_Botzum.JPG HTTP/1.1" 404 7165
+WARNING 2026-07-12 17:48:34,952 log: Not Found: /media/player_pics/Luke_Shelby.JPG
+WARNING 2026-07-12 17:48:34,955 basehttp: "GET /media/player_pics/Luke_Shelby.JPG HTTP/1.1" 404 7165
+WARNING 2026-07-12 17:48:34,964 log: Not Found: /media/player_pics/Mason_Devine.JPG
+WARNING 2026-07-12 17:48:34,967 basehttp: "GET /media/player_pics/Mason_Devine.JPG HTTP/1.1" 404 7169
+WARNING 2026-07-12 17:48:34,971 log: Not Found: /media/player_pics/cason-cason.jpg
+WARNING 2026-07-12 17:48:34,974 basehttp: "GET /media/player_pics/cason-cason.jpg HTTP/1.1" 404 7165
+WARNING 2026-07-12 17:48:34,982 log: Not Found: /media/player_pics/Michael_Ferrell.JPG
+WARNING 2026-07-12 17:48:34,983 basehttp: "GET /media/player_pics/Michael_Ferrell.JPG HTTP/1.1" 404 7181

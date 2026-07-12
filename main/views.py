@@ -28,7 +28,10 @@ def players(request):
     grad_year = request.GET.get('grad_year', '').strip()
     position  = request.GET.get('position', '').strip()
 
-    qs = PlayerProfile.objects.all().order_by('lastName', 'firstName')
+    qs = (PlayerProfile.objects
+          .only('firstName', 'lastName', 'graduation_year', 'team',
+                'positions', 'player_id', 'picture', 'city', 'state')
+          .order_by('lastName', 'firstName'))
     if search:
         qs = qs.filter(Q(firstName__icontains=search) | Q(lastName__icontains=search))
     if grad_year:
@@ -52,7 +55,7 @@ def players(request):
         'position': position,
         'grad_years': grad_years,
         'position_choices': PlayerProfile.POSITION_CHOICES,
-        'total': qs.count(),
+        'total': paginator.count,
     })
 
 def contact(request):
@@ -147,16 +150,16 @@ def metrics_history(request):
         metrics_list = metrics_list.filter(event_id=event_id)
     
     # Pagination
-    paginator = Paginator(metrics_list, 25)  # Show 25 records per page
+    paginator = Paginator(metrics_list, 25)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    
+
     context = {
         'page_obj': page_obj,
         'search_query': search_query,
         'player_id': player_id,
         'event_id': event_id,
-        'total_records': metrics_list.count(),
+        'total_records': paginator.count,
     }
     
     return render(request, 'main/metrics_history.html', context)
@@ -208,7 +211,11 @@ def add(request, player_id):
 @login_required
 def profile_list(request):
     from .models import PlayerProfile
-    profiles = PlayerProfile.objects.filter(user=request.user).order_by('created_at')
+    profiles = (PlayerProfile.objects
+                .filter(user=request.user)
+                .only('firstName', 'lastName', 'graduation_year', 'team',
+                      'positions', 'player_id', 'picture')
+                .order_by('created_at'))
     return render(request, 'main/profile_list.html', {'profiles': profiles})
 
 
@@ -218,17 +225,12 @@ def profile_detail(request, player_id):
     player_profile = get_object_or_404(PlayerProfile, player_id=player_id)
     profile_user = player_profile.user
     
-    # Get all metrics for this profile, ordered by date for charts
-    user_metrics = PlayerMetric.objects.filter(profile=player_profile).order_by('dateCaptured')
+    # Single query — ascending order lets last-seen = most recent per type
+    user_metrics = (PlayerMetric.objects
+                    .filter(profile=player_profile)
+                    .only('metricType', 'metric', 'playerAge', 'dateCaptured', 'capturedBy', 'created_at')
+                    .order_by('dateCaptured', 'created_at'))
 
-    # Get latest metrics for each type (ordered by date descending)
-    latest_metrics_query = PlayerMetric.objects.filter(profile=player_profile).order_by('-dateCaptured', '-created_at')
-    latest_metrics = {}
-    for metric in latest_metrics_query:
-        if metric.metricType not in latest_metrics:
-            latest_metrics[metric.metricType] = metric
-    
-    # Initialize metric data containers
     metrics_data = {
         'sixtyyard': {'dates': [], 'values': [], 'labels': [], 'display': '60 Yard Dash',        'unit': 'seconds', 'reverse': True},
         'fbvelo':    {'dates': [], 'values': [], 'labels': [], 'display': 'Fastball Velocity',    'unit': 'mph',     'reverse': False},
@@ -243,47 +245,51 @@ def profile_detail(request, player_id):
         'height':    {'dates': [], 'values': [], 'labels': [], 'display': 'Height',               'unit': 'inches',  'reverse': False},
         'weight':    {'dates': [], 'values': [], 'labels': [], 'display': 'Weight',               'unit': 'lbs',     'reverse': False},
     }
-    
-    # Organize metrics by type
+
+    # Single pass: build chart data and track latest per type (last write = most recent)
+    latest_metrics = {}
+    total_metrics = 0
     for metric in user_metrics:
+        total_metrics += 1
         if metric.metricType in metrics_data:
             date_str = metric.dateCaptured.strftime('%Y-%m-%d') if metric.dateCaptured else 'N/A'
-            # Get capturedBy display value
             captured_by_display = metric.get_capturedBy_display() if metric.capturedBy else 'N/A'
-            # Create label as array for multi-line display in Chart.js
-            label = [date_str, captured_by_display]
             metrics_data[metric.metricType]['dates'].append(date_str)
             metrics_data[metric.metricType]['values'].append(float(metric.metric))
-            metrics_data[metric.metricType]['labels'].append(label)
-    
-    # Calculate percentile for latest metric of each type
+            metrics_data[metric.metricType]['labels'].append([date_str, captured_by_display])
+            latest_metrics[metric.metricType] = metric
+
+    # Prefetch all needed MetricsRanges in one query
+    if latest_metrics:
+        ages = {int(m.playerAge) for m in latest_metrics.values()}
+        ranges = MetricsRange.objects.filter(
+            metricType__in=list(latest_metrics.keys()), playerAge__in=ages
+        )
+        range_lookup = {(r.metricType, r.playerAge): r for r in ranges}
+    else:
+        range_lookup = {}
+
     for metric_type, metric in latest_metrics.items():
         player_age = int(metric.playerAge)
-        try:
-            metrics_range = MetricsRange.objects.get(
-                metricType=metric_type,
-                playerAge=player_age
-            )
-            percentile = calculate_percentile(metrics_range.Min, metrics_range.Max, metric.metric)
+        metrics_range = range_lookup.get((metric_type, player_age))
+        if metrics_range:
             metrics_data[metric_type]['latest_value'] = float(metric.metric)
             metrics_data[metric_type]['date_captured'] = metric.dateCaptured.strftime('%m/%d/%Y') if metric.dateCaptured else 'N/A'
-            metrics_data[metric_type]['percentile'] = percentile
+            metrics_data[metric_type]['percentile'] = calculate_percentile(metrics_range.Min, metrics_range.Max, metric.metric)
             metrics_data[metric_type]['has_percentile'] = True
             metrics_data[metric_type]['player_age'] = player_age
-        except MetricsRange.DoesNotExist:
+        else:
             metrics_data[metric_type]['latest_value'] = float(metric.metric)
             metrics_data[metric_type]['date_captured'] = metric.dateCaptured.strftime('%Y-%m-%d') if metric.dateCaptured else 'N/A'
             metrics_data[metric_type]['has_percentile'] = False
             metrics_data[metric_type]['player_age'] = player_age
-    
-    # Check if viewing own profile
+
     is_own_profile = request.user.is_authenticated and request.user == profile_user
-    
-    # Prepare context with JSON data for each metric
+
     context = {
         'user': profile_user,
         'profile': player_profile,
-        'total_metrics': user_metrics.count(),
+        'total_metrics': total_metrics,
         'is_own_profile': is_own_profile,
         'metrics_data': {
             metric_type: {
@@ -386,30 +392,34 @@ def playerevaluation(request):
     """View for comparing all user stats to averages - requires login"""
     user = request.user
     
-    # Get all metrics across all profiles belonging to this user
-    user_metrics = PlayerMetric.objects.filter(profile__user=user).order_by('-dateCaptured', '-created_at')
-    
-    # Get the latest metric for each metric type
+    # Fetch only needed fields, latest first
+    user_metrics = (PlayerMetric.objects
+                    .filter(profile__user=user)
+                    .only('metricType', 'metric', 'playerAge', 'gradClass', 'dateCaptured')
+                    .order_by('-dateCaptured', '-created_at'))
+
+    # First-seen per type = most recent (descending order)
     latest_metrics = {}
     for metric in user_metrics:
         if metric.metricType not in latest_metrics:
             latest_metrics[metric.metricType] = metric
-    
-    # Prepare comparison data for each metric type
+
+    # Prefetch all needed MetricsRanges in one query
+    if latest_metrics:
+        ages = {int(m.playerAge) for m in latest_metrics.values()}
+        ranges = MetricsRange.objects.filter(
+            metricType__in=list(latest_metrics.keys()), playerAge__in=ages
+        )
+        range_lookup = {(r.metricType, r.playerAge): r for r in ranges}
+    else:
+        range_lookup = {}
+
     evaluation_data = []
-    
     for metric_type, metric in latest_metrics.items():
+        player_age = int(metric.playerAge)
         grad_class = int(metric.gradClass)
-        
-        # Try to get the metrics range for this metric type and graduation class
-        try:
-            metrics_range = MetricsRange.objects.get(
-                metricType=metric_type,
-                gradClass=grad_class
-            )
-            
-            percentile = calculate_percentile(metrics_range.Min, metrics_range.Max, metric.metric)
-            
+        metrics_range = range_lookup.get((metric_type, player_age))
+        if metrics_range:
             evaluation_data.append({
                 'metric_type': metric_type,
                 'metric_type_display': metric.get_metricType_display(),
@@ -418,13 +428,11 @@ def playerevaluation(request):
                 'max_value': metrics_range.Max,
                 'average': metrics_range.Avg,
                 'grad_class': grad_class,
-                'percentile': percentile,
+                'percentile': calculate_percentile(metrics_range.Min, metrics_range.Max, metric.metric),
                 'has_data': True,
                 'date_captured': metric.dateCaptured,
             })
-            
-        except MetricsRange.DoesNotExist:
-            # No range data for this metric type and graduation class
+        else:
             evaluation_data.append({
                 'metric_type': metric_type,
                 'metric_type_display': metric.get_metricType_display(),
@@ -465,17 +473,17 @@ def event_detail(request, event_id):
         'slider': 'Slider', 'height': 'Height', 'weight': 'Weight',
     }
 
-    # Collect which metric types actually appear in this event's data
-    present_types = set(metrics.values_list('metricType', flat=True))
-    columns = [mt for mt in metric_order if mt in present_types]
-
-    # Build one row per player with values pre-ordered to match columns
+    # Single pass: collect present types and build player map together
+    present_types = set()
     players_map = {}
     for m in metrics:
+        present_types.add(m.metricType)
         key = m.profile_id
         if key not in players_map:
             players_map[key] = {'profile': m.profile, 'values': {}}
         players_map[key]['values'][m.metricType] = m.metric
+
+    columns = [mt for mt in metric_order if mt in present_types]
 
     player_rows = [
         {
