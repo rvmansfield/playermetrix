@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from decimal import Decimal
 from .forms import PlayerMetricForm, CaptureForm, PlayerProfileForm
-from .models import PlayerMetric, MetricsHistory, MetricsRange, Event
+from .models import PlayerMetric, MetricsHistory, MetricsRange, Event, BlogPost
 import json
 import logging
 
@@ -500,3 +500,13 @@ def event_detail(request, event_id):
         'player_rows': player_rows,
         'column_labels': column_labels,
     })
+
+
+def blog(request):
+    posts = BlogPost.objects.filter(published=True)
+    return render(request, 'main/blog.html', {'posts': posts})
+
+
+def blog_detail(request, slug):
+    post = get_object_or_404(BlogPost, slug=slug, published=True)
+    return render(request, 'main/blog_detail.html', {'post': post})

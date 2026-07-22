@@ -1,8 +1,10 @@
 import re
+from datetime import date
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from django.utils.text import slugify
 
 User = get_user_model()
 
@@ -262,3 +264,32 @@ class Event(models.Model):
 
     def __str__(self):
         return f"{self.title} ({self.date})"
+
+
+class BlogPost(models.Model):
+    title = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=260, unique=True, blank=True)
+    date = models.DateField(default=date.today)
+    post = models.TextField(help_text='HTML markup is supported.')
+    image = models.ImageField(upload_to='blog_images/', blank=True, null=True)
+    published = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-date', '-created_at']
+        verbose_name = 'Blog Post'
+        verbose_name_plural = 'Blog Posts'
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base = slugify(self.title)
+            slug, counter = base, 2
+            while BlogPost.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f'{base}-{counter}'
+                counter += 1
+            self.slug = slug
+        super().save(*args, **kwargs)

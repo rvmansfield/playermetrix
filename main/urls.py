@@ -18,4 +18,6 @@ urlpatterns = [
     path('events/<int:event_id>/', views.event_detail, name='event_detail'),
     path('player/<slug:player_id>/', views.profile_detail, name='profile_detail'),
     path('players/<slug:player_id>/', views.profile_detail, name='profile_detail'),
+    path('blog/', views.blog, name='blog'),
+    path('blog/<slug:slug>/', views.blog_detail, name='blog_detail'),
 ]

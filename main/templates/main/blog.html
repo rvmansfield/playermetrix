@@ -1,0 +1,113 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Blog | Player Metrix{% endblock %}
+
+{% block extra_css %}
+    .blog-container {
+        margin: 2rem auto;
+        max-width: 960px;
+        padding: 0 1rem;
+    }
+    .blog-header {
+        margin-bottom: 2rem;
+    }
+    .blog-header h1 {
+        font-weight: 700;
+        color: #0d6efd;
+    }
+    .blog-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        overflow: hidden;
+        margin-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        transition: box-shadow 0.2s ease;
+    }
+    .blog-card:hover {
+        box-shadow: 0 4px 20px rgba(0,0,0,0.14);
+    }
+    .blog-card-img {
+        width: 100%;
+        max-height: 280px;
+        object-fit: cover;
+    }
+    .blog-card-body {
+        padding: 1.5rem;
+    }
+    .blog-card-body h2 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+    .blog-card-body h2 a {
+        color: #212529;
+        text-decoration: none;
+    }
+    .blog-card-body h2 a:hover {
+        color: #0d6efd;
+    }
+    .blog-meta {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-bottom: 1rem;
+    }
+    .blog-excerpt {
+        color: #495057;
+        font-size: 0.95rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .blog-read-more {
+        margin-top: 1rem;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: #0d6efd;
+        text-decoration: none;
+    }
+    .blog-read-more:hover {
+        text-decoration: underline;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        color: #6c757d;
+    }
+{% endblock %}
+
+{% block content %}
+<div class="blog-container">
+    <div class="blog-header">
+        <h1>Blog</h1>
+    </div>
+
+    {% if posts %}
+        {% for post in posts %}
+        <div class="blog-card">
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="blog-card-img">
+            {% endif %}
+            <div class="blog-card-body">
+                <h2><a href="{% url 'blog_detail' slug=post.slug %}">{{ post.title }}</a></h2>
+                <div class="blog-meta">{{ post.date|date:"F j, Y" }}</div>
+                <div class="blog-excerpt">{{ post.post|striptags }}</div>
+                <a href="{% url 'blog_detail' slug=post.slug %}" class="blog-read-more">Read more &rarr;</a>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <h5>No posts yet.</h5>
+            <p class="mb-0">Check back soon!</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

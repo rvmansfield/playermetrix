@@ -1,12 +1,12 @@
 databases:
   - name: playermetrixdb
-    plan: free
+    plan: starter
     databaseName: playermetrix
     user: statsuser
 
 services:
   - type: web
-    plan: free
+    plan: basic-256mb
     name: playermetrix
     runtime: python
     buildCommand: './build.sh'

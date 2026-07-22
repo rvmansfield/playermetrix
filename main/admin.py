@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import PlayerMetric, MetricsHistory, MetricsRange, PlayerProfile, Event
+from .models import PlayerMetric, MetricsHistory, MetricsRange, PlayerProfile, Event, BlogPost
 
 @admin.register(PlayerMetric)
 class PlayerMetricAdmin(admin.ModelAdmin):
-    list_display = ('metricType', 'metric', 'playerAge', 'created_at', 'profile')
+    list_display = ('metricType', 'metric', 'event', 'created_at', 'profile')
     list_filter = ('metricType',)
     search_fields = ('metric', 'playerAge', 'profile__firstName', 'profile__lastName', 'profile__player_id')
     date_hierarchy = None
@@ -64,6 +64,17 @@ class EventAdmin(admin.ModelAdmin):
     search_fields = ('title', 'location')
     ordering = ('date',)
     list_editable = ('active',)
+
+@admin.register(BlogPost)
+class BlogPostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date', 'published', 'created_at')
+    list_filter = ('published',)
+    search_fields = ('title',)
+    prepopulated_fields = {'slug': ('title',)}
+    list_editable = ('published',)
+    date_hierarchy = 'date'
+    ordering = ('-date',)
+    fields = ('title', 'slug', 'date', 'image', 'post', 'published')
 
 @admin.register(PlayerProfile)
 class PlayerProfileAdmin(admin.ModelAdmin):

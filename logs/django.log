@@ -160,3 +160,7 @@ WARNING 2026-07-12 17:48:34,971 log: Not Found: /media/player_pics/cason-cason.j
 WARNING 2026-07-12 17:48:34,974 basehttp: "GET /media/player_pics/cason-cason.jpg HTTP/1.1" 404 7165
 WARNING 2026-07-12 17:48:34,982 log: Not Found: /media/player_pics/Michael_Ferrell.JPG
 WARNING 2026-07-12 17:48:34,983 basehttp: "GET /media/player_pics/Michael_Ferrell.JPG HTTP/1.1" 404 7181
+WARNING 2026-07-21 08:54:37,900 log: Not Found: /favicon.ico
+WARNING 2026-07-21 08:54:37,904 basehttp: "GET /favicon.ico HTTP/1.1" 404 7210
+WARNING 2026-07-21 09:12:01,063 log: Not Found: /media/player_pics/Austin_Clark.JPG
+WARNING 2026-07-21 09:12:01,065 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7169
