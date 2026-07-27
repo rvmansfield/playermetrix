@@ -164,3 +164,9 @@ WARNING 2026-07-21 08:54:37,900 log: Not Found: /favicon.ico
 WARNING 2026-07-21 08:54:37,904 basehttp: "GET /favicon.ico HTTP/1.1" 404 7210
 WARNING 2026-07-21 09:12:01,063 log: Not Found: /media/player_pics/Austin_Clark.JPG
 WARNING 2026-07-21 09:12:01,065 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7169
+WARNING 2026-07-27 18:00:55,774 log: Not Found: /media/player_pics/Austin_Clark.JPG
+WARNING 2026-07-27 18:00:55,776 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7696
+WARNING 2026-07-27 18:05:01,369 log: Not Found: /favicon.ico
+WARNING 2026-07-27 18:05:01,369 basehttp: "GET /favicon.ico HTTP/1.1" 404 7737
+WARNING 2026-07-27 18:20:20,912 log: Not Found: /media/player_pics/Austin_Clark.JPG
+WARNING 2026-07-27 18:20:20,912 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7696

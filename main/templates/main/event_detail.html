@@ -108,6 +108,36 @@
         border-radius: 15px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
+    /* Sortable headers */
+    .grid-table thead th {
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+    }
+    .grid-table thead th:hover {
+        background: #e9ecef;
+        color: #495057;
+    }
+    .grid-table thead th.player-col:hover {
+        background: #e9ecef;
+    }
+    .grid-table thead th.sort-active {
+        color: #0d6efd;
+        background: #e7f0ff;
+    }
+    .grid-table thead th.player-col.sort-active {
+        background: #e7f0ff;
+    }
+    .sort-icon {
+        display: inline-block;
+        margin-left: 4px;
+        font-size: 0.65rem;
+        vertical-align: middle;
+        opacity: 0.35;
+    }
+    .sort-active .sort-icon {
+        opacity: 1;
+    }
 {% endblock %}
 
 {% block content %}
@@ -130,9 +160,9 @@
         <table class="grid-table">
             <thead>
                 <tr>
-                    <th class="player-col">Player</th>
+                    <th class="player-col">Player<span class="sort-icon">⇅</span></th>
                     {% for label in column_labels %}
-                        <th>{{ label }}</th>
+                        <th>{{ label }}<span class="sort-icon">⇅</span></th>
                     {% endfor %}
                 </tr>
             </thead>
@@ -171,4 +201,79 @@
     {% endif %}
 
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function () {
+    var table = document.querySelector('.grid-table');
+    if (!table) return;
+
+    var headers = Array.from(table.querySelectorAll('thead th'));
+    var tbody = table.querySelector('tbody');
+    var sortCol = -1;
+    var sortAsc = true;
+
+    headers.forEach(function (th, colIndex) {
+        th.addEventListener('click', function () {
+            if (sortCol === colIndex) {
+                sortAsc = !sortAsc;
+            } else {
+                sortCol = colIndex;
+                sortAsc = true;
+            }
+            sortTable(colIndex, sortAsc);
+            updateIcons(colIndex, sortAsc);
+        });
+    });
+
+    function getCellKey(row, colIndex) {
+        var cells = row.querySelectorAll('td');
+        if (!cells[colIndex]) return '';
+        var cell = cells[colIndex];
+
+        if (colIndex === 0) {
+            var a = cell.querySelector('a');
+            var name = a ? a.textContent.trim() : cell.textContent.trim();
+            var parts = name.split(/\s+/);
+            return parts.length > 1 ? parts[parts.length - 1] + '\x00' + parts[0] : name;
+        }
+
+        if (cell.classList.contains('empty-cell')) return null;
+        return parseFloat(cell.textContent.trim());
+    }
+
+    function sortTable(colIndex, asc) {
+        var rows = Array.from(tbody.querySelectorAll('tr'));
+        rows.sort(function (a, b) {
+            var av = getCellKey(a, colIndex);
+            var bv = getCellKey(b, colIndex);
+
+            if (colIndex === 0) {
+                if (av === bv) return 0;
+                return asc ? av.localeCompare(bv) : bv.localeCompare(av);
+            }
+
+            if (av === null && bv === null) return 0;
+            if (av === null) return 1;
+            if (bv === null) return -1;
+            return asc ? av - bv : bv - av;
+        });
+        rows.forEach(function (row) { tbody.appendChild(row); });
+    }
+
+    function updateIcons(activeCol, asc) {
+        headers.forEach(function (th, i) {
+            var icon = th.querySelector('.sort-icon');
+            if (i === activeCol) {
+                icon.textContent = asc ? '▲' : '▼';
+                th.classList.add('sort-active');
+            } else {
+                icon.textContent = '⇅';
+                th.classList.remove('sort-active');
+            }
+        });
+    }
+})();
+</script>
 {% endblock %}
