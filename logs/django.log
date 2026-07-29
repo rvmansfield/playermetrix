@@ -170,3 +170,335 @@ WARNING 2026-07-27 18:05:01,369 log: Not Found: /favicon.ico
 WARNING 2026-07-27 18:05:01,369 basehttp: "GET /favicon.ico HTTP/1.1" 404 7737
 WARNING 2026-07-27 18:20:20,912 log: Not Found: /media/player_pics/Austin_Clark.JPG
 WARNING 2026-07-27 18:20:20,912 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7696
+ERROR 2026-07-27 18:31:25,397 log: Internal Server Error: /evaluate/
+Traceback (most recent call last):
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "main_playermetric_pkey"
+DETAIL:  Key (id)=(5814) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Code\PlayerMetrix\playermetrix\main\views.py", line 320, in evaluate
+    player_metric = form.save()
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\forms\models.py", line 554, in save
+    self.instance.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "main_playermetric_pkey"
+DETAIL:  Key (id)=(5814) already exists.
+
+ERROR 2026-07-27 18:31:25,407 basehttp: "POST /evaluate/ HTTP/1.1" 500 155741
+ERROR 2026-07-27 18:37:31,214 log: Internal Server Error: /evaluate/
+Traceback (most recent call last):
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "main_playermetric_pkey"
+DETAIL:  Key (id)=(5815) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Code\PlayerMetrix\playermetrix\main\views.py", line 320, in evaluate
+    player_metric = form.save()
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\forms\models.py", line 554, in save
+    self.instance.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "main_playermetric_pkey"
+DETAIL:  Key (id)=(5815) already exists.
+
+ERROR 2026-07-27 18:37:31,218 basehttp: "POST /evaluate/ HTTP/1.1" 500 155741
+ERROR 2026-07-27 18:37:34,907 log: Internal Server Error: /evaluate/
+Traceback (most recent call last):
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "main_playermetric_pkey"
+DETAIL:  Key (id)=(5816) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Code\PlayerMetrix\playermetrix\main\views.py", line 320, in evaluate
+    player_metric = form.save()
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\forms\models.py", line 554, in save
+    self.instance.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Code\PlayerMetrix\myworld\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "main_playermetric_pkey"
+DETAIL:  Key (id)=(5816) already exists.
+
+ERROR 2026-07-27 18:37:34,910 basehttp: "POST /evaluate/ HTTP/1.1" 500 155741
+WARNING 2026-07-27 18:40:57,173 log: Not Found: /media/player_pics/cason-cason.jpg
+WARNING 2026-07-27 18:40:57,174 basehttp: "GET /media/player_pics/cason-cason.jpg HTTP/1.1" 404 7692
+WARNING 2026-07-27 18:40:57,199 log: Not Found: /media/player_pics/Michael_Ferrell.JPG
+WARNING 2026-07-27 18:40:57,200 basehttp: "GET /media/player_pics/Michael_Ferrell.JPG HTTP/1.1" 404 7708
+WARNING 2026-07-27 18:40:57,389 log: Not Found: /media/player_pics/Nordlander_Ryan.JPG
+WARNING 2026-07-27 18:40:57,391 basehttp: "GET /media/player_pics/Nordlander_Ryan.JPG HTTP/1.1" 404 7708
+WARNING 2026-07-27 18:40:57,406 log: Not Found: /media/player_pics/wood-parker.jpg
+WARNING 2026-07-27 18:40:57,407 basehttp: "GET /media/player_pics/wood-parker.jpg HTTP/1.1" 404 7692
+WARNING 2026-07-27 18:40:57,456 log: Not Found: /media/player_pics/Preston_Owen.JPG
+WARNING 2026-07-27 18:40:57,461 log: Not Found: /media/player_pics/houston-poole.jpg
+WARNING 2026-07-27 18:40:57,463 basehttp: "GET /media/player_pics/Preston_Owen.JPG HTTP/1.1" 404 7696
+WARNING 2026-07-27 18:40:57,468 basehttp: "GET /media/player_pics/houston-poole.jpg HTTP/1.1" 404 7700
+WARNING 2026-07-27 18:40:57,502 log: Not Found: /media/player_pics/Reese_Gregg.JPG
+WARNING 2026-07-27 18:40:57,508 log: Not Found: /media/player_pics/andrew-riedel.jpg
+WARNING 2026-07-27 18:40:57,509 basehttp: "GET /media/player_pics/Reese_Gregg.JPG HTTP/1.1" 404 7692
+WARNING 2026-07-27 18:40:57,510 basehttp: "GET /media/player_pics/andrew-riedel.jpg HTTP/1.1" 404 7700
+WARNING 2026-07-27 18:40:57,578 log: Not Found: /media/player_pics/xander-ryan.jpg
+WARNING 2026-07-27 18:40:57,581 log: Not Found: /media/player_pics/alejandro-sardi.jpg
+WARNING 2026-07-27 18:40:57,582 basehttp: "GET /media/player_pics/xander-ryan.jpg HTTP/1.1" 404 7692
+WARNING 2026-07-27 18:40:57,582 basehttp: "GET /media/player_pics/alejandro-sardi.jpg HTTP/1.1" 404 7708
+WARNING 2026-07-27 18:40:57,637 log: Not Found: /media/player_pics/bennett-selvage.jpg
+WARNING 2026-07-27 18:40:57,645 log: Not Found: /media/player_pics/Sawyer_Cooper.JPG
+WARNING 2026-07-27 18:40:57,648 basehttp: "GET /media/player_pics/bennett-selvage.jpg HTTP/1.1" 404 7708
+WARNING 2026-07-27 18:40:57,657 log: Not Found: /media/player_pics/kyle-shaheen.jpg
+WARNING 2026-07-27 18:40:57,657 basehttp: "GET /media/player_pics/Sawyer_Cooper.JPG HTTP/1.1" 404 7700
+WARNING 2026-07-27 18:40:57,659 basehttp: "GET /media/player_pics/kyle-shaheen.jpg HTTP/1.1" 404 7696
+WARNING 2026-07-27 18:40:57,724 log: Not Found: /media/player_pics/noah-sugg.jpg
+WARNING 2026-07-27 18:40:57,728 basehttp: "GET /media/player_pics/noah-sugg.jpg HTTP/1.1" 404 7684
+WARNING 2026-07-27 18:40:57,743 log: Not Found: /media/player_pics/jonathan-vinson jr..jpg
+WARNING 2026-07-27 18:40:57,744 basehttp: "GET /media/player_pics/jonathan-vinson%20jr..jpg HTTP/1.1" 404 7726
+WARNING 2026-07-27 18:40:57,776 log: Not Found: /media/player_pics/Weston_Taylor.JPG
+WARNING 2026-07-27 18:40:57,781 basehttp: "GET /media/player_pics/Weston_Taylor.JPG HTTP/1.1" 404 7700
+WARNING 2026-07-27 18:40:57,785 log: Not Found: /media/player_pics/jt-williams.jpg
+WARNING 2026-07-27 18:40:57,789 basehttp: "GET /media/player_pics/jt-williams.jpg HTTP/1.1" 404 7692
+WARNING 2026-07-27 18:40:57,824 log: Not Found: /media/caleb-waters.jpg
+WARNING 2026-07-27 18:40:57,829 log: Not Found: /media/player_pics/Austin_Clark.JPG
+WARNING 2026-07-27 18:40:57,831 basehttp: "GET /media/caleb-waters.jpg HTTP/1.1" 404 7648
+WARNING 2026-07-27 18:40:57,832 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7696
+WARNING 2026-07-27 18:40:57,842 log: Not Found: /media/player_pics/Beckett_Kaltenbach.JPG
+WARNING 2026-07-27 18:40:57,846 basehttp: "GET /media/player_pics/Beckett_Kaltenbach.JPG HTTP/1.1" 404 7720
+WARNING 2026-07-27 18:40:57,853 log: Not Found: /media/player_pics/Bennett_Zane.JPG
+WARNING 2026-07-27 18:40:57,856 basehttp: "GET /media/player_pics/Bennett_Zane.JPG HTTP/1.1" 404 7696
+WARNING 2026-07-27 18:40:57,913 log: Not Found: /media/player_pics/Cannon_Tyler.JPG
+WARNING 2026-07-27 18:40:57,916 basehttp: "GET /media/player_pics/Cannon_Tyler.JPG HTTP/1.1" 404 7696
+WARNING 2026-07-27 18:40:57,953 log: Not Found: /media/player_pics/Catrone_Jack.JPG
+WARNING 2026-07-27 18:40:57,956 basehttp: "GET /media/player_pics/Catrone_Jack.JPG HTTP/1.1" 404 7696
+WARNING 2026-07-27 18:40:57,961 log: Not Found: /media/player_pics/Colton_Briggs.JPG
+WARNING 2026-07-27 18:40:57,962 basehttp: "GET /media/player_pics/Colton_Briggs.JPG HTTP/1.1" 404 7700
+WARNING 2026-07-27 18:40:57,980 log: Not Found: /media/player_pics/Derrigrand_Sean.JPG
+WARNING 2026-07-27 18:40:57,986 log: Not Found: /media/player_pics/Drew_Nordlander.JPG
+WARNING 2026-07-27 18:40:57,988 basehttp: "GET /media/player_pics/Derrigrand_Sean.JPG HTTP/1.1" 404 7708
+WARNING 2026-07-27 18:40:57,989 basehttp: "GET /media/player_pics/Drew_Nordlander.JPG HTTP/1.1" 404 7708
+WARNING 2026-07-27 18:40:58,020 log: Not Found: /media/player_pics/Evan_Shelby.JPG
+WARNING 2026-07-27 18:40:58,023 basehttp: "GET /media/player_pics/Evan_Shelby.JPG HTTP/1.1" 404 7692
+WARNING 2026-07-27 18:40:58,030 log: Not Found: /media/player_pics/bennett-ferguson.jpg
+WARNING 2026-07-27 18:40:58,032 basehttp: "GET /media/player_pics/bennett-ferguson.jpg HTTP/1.1" 404 7712
+WARNING 2026-07-27 18:40:58,053 log: Not Found: /media/player_pics/keri-fitzsimmons.jpg
+WARNING 2026-07-27 18:40:58,054 basehttp: "GET /media/player_pics/keri-fitzsimmons.jpg HTTP/1.1" 404 7712
+WARNING 2026-07-27 18:40:58,170 log: Not Found: /media/player_pics/owen-heafner.jpg
+WARNING 2026-07-27 18:40:58,174 log: Not Found: /media/player_pics/jackson-harrell.jpg
+WARNING 2026-07-27 18:40:58,178 basehttp: "GET /media/player_pics/jackson-harrell.jpg HTTP/1.1" 404 7708
+WARNING 2026-07-27 18:40:58,178 basehttp: "GET /media/player_pics/owen-heafner.jpg HTTP/1.1" 404 7696
+WARNING 2026-07-27 18:40:58,204 log: Not Found: /media/player_pics/dayne-hunter.jpg
+WARNING 2026-07-27 18:40:58,212 log: Not Found: /media/player_pics/Isaiah_Blount.JPG
+WARNING 2026-07-27 18:40:58,213 basehttp: "GET /media/player_pics/dayne-hunter.jpg HTTP/1.1" 404 7696
+WARNING 2026-07-27 18:40:58,220 log: Not Found: /media/player_pics/Jace_Jones.JPG
+WARNING 2026-07-27 18:40:58,220 basehttp: "GET /media/player_pics/Isaiah_Blount.JPG HTTP/1.1" 404 7700
+WARNING 2026-07-27 18:40:58,223 basehttp: "GET /media/player_pics/Jace_Jones.JPG HTTP/1.1" 404 7688
+WARNING 2026-07-27 18:40:58,232 log: Not Found: /media/player_pics/Jack_Wride.JPG
+WARNING 2026-07-27 18:40:58,234 basehttp: "GET /media/player_pics/Jack_Wride.JPG HTTP/1.1" 404 7688
+WARNING 2026-07-27 18:40:58,252 log: Not Found: /media/player_pics/Keagan_Drake.JPG
+WARNING 2026-07-27 18:40:58,254 basehttp: "GET /media/player_pics/Keagan_Drake.JPG HTTP/1.1" 404 7696
+WARNING 2026-07-27 18:40:58,273 log: Not Found: /media/player_pics/Lawson_Jaillett.JPG
+WARNING 2026-07-27 18:40:58,277 basehttp: "GET /media/player_pics/Lawson_Jaillett.JPG HTTP/1.1" 404 7708
+WARNING 2026-07-27 18:40:58,300 log: Not Found: /media/player_pics/Luke_Shelby.JPG
+WARNING 2026-07-27 18:40:58,303 log: Not Found: /media/player_pics/Luke_Botzum.JPG
+WARNING 2026-07-27 18:40:58,306 basehttp: "GET /media/player_pics/Luke_Shelby.JPG HTTP/1.1" 404 7692
+WARNING 2026-07-27 18:40:58,307 basehttp: "GET /media/player_pics/Luke_Botzum.JPG HTTP/1.1" 404 7692
+WARNING 2026-07-27 18:40:58,324 log: Not Found: /media/player_pics/Mason_Devine.JPG
+WARNING 2026-07-27 18:40:58,326 basehttp: "GET /media/player_pics/Mason_Devine.JPG HTTP/1.1" 404 7696

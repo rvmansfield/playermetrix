@@ -170,6 +170,7 @@ class PlayerProfile(models.Model):
     
     # Additional Fields
     bio = models.TextField(max_length=500, blank=True, null=True)
+    x_profile = models.CharField(max_length=20, blank=True, null=True, verbose_name='X (Twitter) Handle')
     # Location and picture
     city = models.CharField(max_length=100, blank=True, null=True)
 
