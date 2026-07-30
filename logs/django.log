@@ -502,3 +502,5 @@ WARNING 2026-07-27 18:40:58,306 basehttp: "GET /media/player_pics/Luke_Shelby.JP
 WARNING 2026-07-27 18:40:58,307 basehttp: "GET /media/player_pics/Luke_Botzum.JPG HTTP/1.1" 404 7692
 WARNING 2026-07-27 18:40:58,324 log: Not Found: /media/player_pics/Mason_Devine.JPG
 WARNING 2026-07-27 18:40:58,326 basehttp: "GET /media/player_pics/Mason_Devine.JPG HTTP/1.1" 404 7696
+WARNING 2026-07-30 17:26:19,144 log: Not Found: /media/player_pics/Austin_Clark.JPG
+WARNING 2026-07-30 17:26:19,153 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7696
