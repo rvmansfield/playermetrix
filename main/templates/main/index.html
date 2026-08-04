@@ -6,7 +6,7 @@
 {% block extra_css %}
         .hero-section {
             background: white;
-            padding: 2rem;
+            padding: 1.25rem 2rem;
             border-radius: 15px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             width: 100%;
@@ -14,13 +14,13 @@
             margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 3rem;
+            gap: 2rem;
         }
-        
+
         .hero-image {
             flex-shrink: 0;
-            width: 200px;
-            height: 200px;
+            width: 120px;
+            height: 120px;
             border-radius: 15px;
             background: linear-gradient(135deg, #0d6efd 0%, #0056b3 100%);
             display: flex;
@@ -29,32 +29,32 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
+
         .hero-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
+
         .hero-tagline {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
-        
+
         .hero-tagline h1 {
             color: #333;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             line-height: 1.2;
         }
-        
+
         .hero-tagline p {
             color: #6c757d;
-            font-size: 1.2rem;
-            line-height: 1.6;
+            font-size: 1rem;
+            line-height: 1.5;
             margin: 0;
         }
         
@@ -100,17 +100,17 @@
             
             .hero-image {
                 width: 100%;
-                max-width: 300px;
-                height: 250px;
+                max-width: 220px;
+                height: 140px;
             }
-            
+
             .hero-tagline h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
                 text-align: center;
             }
-            
+
             .hero-tagline p {
-                font-size: 1rem;
+                font-size: 0.95rem;
                 text-align: center;
             }
         }
@@ -123,22 +123,22 @@
         </div>
         <div class="hero-tagline">
             <h1>Track, Compare, and Connect with the Community.</h1>
-            <p>PlayerMetrix gives you the tools to build your profile, log your metrics, browse other players, and see how you rank against age-based benchmarks.</p>
+            <p>PlayerMetrix helps players get seen and get better: build a profile, capture metrics and video at events, track your progress over time, and see how you rank against age-based benchmarks.</p>
         </div>
     </div>
     <div class="container-fluid mt-5 px-4">
         <div class="row g-4">
 
-            <!-- Card 1: Players Directory -->
+            <!-- Card 1: Services -->
             <div class="col-12 col-md-4">
                 <div class="feature-card">
                     <div class="feature-card-img">
-                        <img src="{% static 'main/images/homeplayer.jpg' %}" alt="Players Directory">
+                        <img src="{% static 'main/images/homeplayer.jpg' %}" alt="Services">
                     </div>
                     <div class="feature-card-body">
-                        <h3 class="fw-bold mb-2">Browse Players</h3>
-                        <p class="text-muted mb-4">Explore all player profiles in the community. Search by position, team, or graduation year.</p>
-                        <a class="btn btn-primary btn-lg w-100" href="{% url 'players' %}">Browse Players</a>
+                        <h3 class="fw-bold mb-2">Services</h3>
+                        <p class="text-muted mb-4">See everything PlayerMetrix offers, from event metrics capture to player video, plus profiles with ongoing metrics tracking.</p>
+                        <a class="btn btn-primary btn-lg w-100" href="{% url 'services' %}">View Services</a>
                     </div>
                 </div>
             </div>

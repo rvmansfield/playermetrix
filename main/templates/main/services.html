@@ -1,0 +1,173 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Services{% endblock %}
+
+{% block extra_css %}
+        .hero-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .hero-tagline {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-tagline h1 {
+            color: #333;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-tagline p {
+            color: #6c757d;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 1.75rem;
+        }
+
+        .service-card .card-title-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card .icon-square {
+            flex-shrink: 0;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #0d6efd 0%, #0056b3 100%);
+            color: #fff;
+        }
+
+        .service-card h3 {
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+        .service-card p {
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .service-card .btn {
+            margin-top: auto;
+        }
+
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 */
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .hero-tagline h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-tagline p {
+                font-size: 1rem;
+            }
+        }
+{% endblock %}
+
+{% block content %}
+    <div class="hero-section">
+        <div class="hero-tagline">
+            <h1>What PlayerMetrix Offers</h1>
+            <p>From capturing your first metric to comparing yourself against the field, PlayerMetrix gives players, families, and coaches the tools to track development and showcase progress.</p>
+        </div>
+    </div>
+
+    <div class="container-fluid mt-5 px-4">
+        <div class="row g-4">
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="card-title-row">
+                        <div class="icon-square">🏟️</div>
+                        <h3>Event Metrics</h3>
+                    </div>
+                    <p>Every showcase and combine we run captures metrics on the spot, from 60-yard times to exit velocity, so results are ready to review right after the event.</p>
+                    <a class="btn btn-primary w-100" href="{% url 'events' %}">See Events</a>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="card-title-row">
+                        <div class="icon-square">🎥</div>
+                        <h3>Player Video</h3>
+                    </div>
+                    <div class="video-embed">
+                        <iframe src="https://www.youtube.com/embed/S24OdAskAd0?si=QYhOcpxd6axGH3v7" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <p>Get game and workout footage of your at-bats, swings, and pitches to share with coaches and recruiters alongside your metrics.</p>
+                    <a class="btn btn-primary w-100" href="{% url 'contact' %}">Contact Us</a>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="card-title-row">
+                        <div class="icon-square">📋</div>
+                        <h3>Profiles w/ Metrics Tracking</h3>
+                    </div>
+                    <p>Build a public profile and log your metrics over time, then see exactly how you stack up against age-based benchmarks from the community.</p>
+                    <a class="btn btn-primary w-100" href="{% url 'profile_create' %}">Create a Profile</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

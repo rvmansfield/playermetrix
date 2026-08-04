@@ -504,3 +504,169 @@ WARNING 2026-07-27 18:40:58,324 log: Not Found: /media/player_pics/Mason_Devine.
 WARNING 2026-07-27 18:40:58,326 basehttp: "GET /media/player_pics/Mason_Devine.JPG HTTP/1.1" 404 7696
 WARNING 2026-07-30 17:26:19,144 log: Not Found: /media/player_pics/Austin_Clark.JPG
 WARNING 2026-07-30 17:26:19,153 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:35:38,243 log: Not Found: /media/player_pics/Austin_Clark.JPG
+WARNING 2026-08-03 16:35:38,245 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:36:28,441 log: Not Found: /media/player_pics/cason-cason.jpg
+WARNING 2026-08-03 16:36:28,442 basehttp: "GET /media/player_pics/cason-cason.jpg HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:36:28,456 log: Not Found: /media/player_pics/Michael_Ferrell.JPG
+WARNING 2026-08-03 16:36:28,457 basehttp: "GET /media/player_pics/Michael_Ferrell.JPG HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:36:28,655 log: Not Found: /media/player_pics/Nordlander_Ryan.JPG
+WARNING 2026-08-03 16:36:28,657 basehttp: "GET /media/player_pics/Nordlander_Ryan.JPG HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:36:28,661 log: Not Found: /media/player_pics/wood-parker.jpg
+WARNING 2026-08-03 16:36:28,664 basehttp: "GET /media/player_pics/wood-parker.jpg HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:36:28,702 log: Not Found: /media/player_pics/houston-poole.jpg
+WARNING 2026-08-03 16:36:28,708 log: Not Found: /media/player_pics/Preston_Owen.JPG
+WARNING 2026-08-03 16:36:28,709 basehttp: "GET /media/player_pics/houston-poole.jpg HTTP/1.1" 404 7700
+WARNING 2026-08-03 16:36:28,710 basehttp: "GET /media/player_pics/Preston_Owen.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:36:28,726 log: Not Found: /media/player_pics/Reese_Gregg.JPG
+WARNING 2026-08-03 16:36:28,728 basehttp: "GET /media/player_pics/Reese_Gregg.JPG HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:36:28,746 log: Not Found: /media/player_pics/andrew-riedel.jpg
+WARNING 2026-08-03 16:36:28,748 basehttp: "GET /media/player_pics/andrew-riedel.jpg HTTP/1.1" 404 7700
+WARNING 2026-08-03 16:36:28,768 log: Not Found: /media/player_pics/xander-ryan.jpg
+WARNING 2026-08-03 16:36:28,777 basehttp: "GET /media/player_pics/xander-ryan.jpg HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:36:28,779 log: Not Found: /media/player_pics/alejandro-sardi.jpg
+WARNING 2026-08-03 16:36:28,783 log: Not Found: /media/player_pics/Sawyer_Cooper.JPG
+WARNING 2026-08-03 16:36:28,787 basehttp: "GET /media/player_pics/Sawyer_Cooper.JPG HTTP/1.1" 404 7700
+WARNING 2026-08-03 16:36:28,787 basehttp: "GET /media/player_pics/alejandro-sardi.jpg HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:36:28,804 log: Not Found: /media/player_pics/bennett-selvage.jpg
+WARNING 2026-08-03 16:36:28,811 log: Not Found: /media/player_pics/kyle-shaheen.jpg
+WARNING 2026-08-03 16:36:28,812 basehttp: "GET /media/player_pics/bennett-selvage.jpg HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:36:28,813 basehttp: "GET /media/player_pics/kyle-shaheen.jpg HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:36:28,860 log: Not Found: /media/player_pics/noah-sugg.jpg
+WARNING 2026-08-03 16:36:28,864 basehttp: "GET /media/player_pics/noah-sugg.jpg HTTP/1.1" 404 7684
+WARNING 2026-08-03 16:36:28,884 log: Not Found: /media/player_pics/jonathan-vinson jr..jpg
+WARNING 2026-08-03 16:36:28,887 basehttp: "GET /media/player_pics/jonathan-vinson%20jr..jpg HTTP/1.1" 404 7726
+WARNING 2026-08-03 16:36:28,904 log: Not Found: /media/player_pics/Weston_Taylor.JPG
+WARNING 2026-08-03 16:36:28,907 basehttp: "GET /media/player_pics/Weston_Taylor.JPG HTTP/1.1" 404 7700
+WARNING 2026-08-03 16:36:28,916 log: Not Found: /media/player_pics/jt-williams.jpg
+WARNING 2026-08-03 16:36:28,918 basehttp: "GET /media/player_pics/jt-williams.jpg HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:36:28,961 log: Not Found: /media/player_pics/Austin_Clark.JPG
+WARNING 2026-08-03 16:36:28,971 log: Not Found: /media/caleb-waters.jpg
+WARNING 2026-08-03 16:36:28,974 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:36:28,977 basehttp: "GET /media/caleb-waters.jpg HTTP/1.1" 404 7648
+WARNING 2026-08-03 16:36:29,006 log: Not Found: /media/player_pics/Beckett_Kaltenbach.JPG
+WARNING 2026-08-03 16:36:29,016 log: Not Found: /media/player_pics/Bennett_Zane.JPG
+WARNING 2026-08-03 16:36:29,024 basehttp: "GET /media/player_pics/Bennett_Zane.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:36:29,025 basehttp: "GET /media/player_pics/Beckett_Kaltenbach.JPG HTTP/1.1" 404 7720
+WARNING 2026-08-03 16:36:29,090 log: Not Found: /media/player_pics/Cannon_Tyler.JPG
+WARNING 2026-08-03 16:36:29,094 basehttp: "GET /media/player_pics/Cannon_Tyler.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:36:29,157 log: Not Found: /media/player_pics/Catrone_Jack.JPG
+WARNING 2026-08-03 16:36:29,164 log: Not Found: /media/player_pics/Colton_Briggs.JPG
+WARNING 2026-08-03 16:36:29,164 basehttp: "GET /media/player_pics/Catrone_Jack.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:36:29,168 basehttp: "GET /media/player_pics/Colton_Briggs.JPG HTTP/1.1" 404 7700
+WARNING 2026-08-03 16:36:29,177 log: Not Found: /media/player_pics/Derrigrand_Sean.JPG
+WARNING 2026-08-03 16:36:29,179 basehttp: "GET /media/player_pics/Derrigrand_Sean.JPG HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:36:29,190 log: Not Found: /media/player_pics/Drew_Nordlander.JPG
+WARNING 2026-08-03 16:36:29,195 basehttp: "GET /media/player_pics/Drew_Nordlander.JPG HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:36:29,210 log: Not Found: /media/player_pics/Evan_Shelby.JPG
+WARNING 2026-08-03 16:36:29,214 basehttp: "GET /media/player_pics/Evan_Shelby.JPG HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:36:29,221 log: Not Found: /media/player_pics/bennett-ferguson.jpg
+WARNING 2026-08-03 16:36:29,224 basehttp: "GET /media/player_pics/bennett-ferguson.jpg HTTP/1.1" 404 7712
+WARNING 2026-08-03 16:36:29,248 log: Not Found: /media/player_pics/keri-fitzsimmons.jpg
+WARNING 2026-08-03 16:36:29,249 basehttp: "GET /media/player_pics/keri-fitzsimmons.jpg HTTP/1.1" 404 7712
+WARNING 2026-08-03 16:36:29,284 log: Not Found: /media/player_pics/jackson-harrell.jpg
+WARNING 2026-08-03 16:36:29,286 basehttp: "GET /media/player_pics/jackson-harrell.jpg HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:36:29,298 log: Not Found: /media/player_pics/owen-heafner.jpg
+WARNING 2026-08-03 16:36:29,301 basehttp: "GET /media/player_pics/owen-heafner.jpg HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:36:29,341 log: Not Found: /media/player_pics/Isaiah_Blount.JPG
+WARNING 2026-08-03 16:36:29,345 log: Not Found: /media/player_pics/dayne-hunter.jpg
+WARNING 2026-08-03 16:36:29,350 log: Not Found: /media/player_pics/Jace_Jones.JPG
+WARNING 2026-08-03 16:36:29,355 log: Not Found: /media/player_pics/Jack_Wride.JPG
+WARNING 2026-08-03 16:36:29,356 basehttp: "GET /media/player_pics/Isaiah_Blount.JPG HTTP/1.1" 404 7700
+WARNING 2026-08-03 16:36:29,356 basehttp: "GET /media/player_pics/Jace_Jones.JPG HTTP/1.1" 404 7688
+WARNING 2026-08-03 16:36:29,357 basehttp: "GET /media/player_pics/dayne-hunter.jpg HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:36:29,357 basehttp: "GET /media/player_pics/Jack_Wride.JPG HTTP/1.1" 404 7688
+WARNING 2026-08-03 16:36:29,385 log: Not Found: /media/player_pics/Keagan_Drake.JPG
+WARNING 2026-08-03 16:36:29,386 basehttp: "GET /media/player_pics/Keagan_Drake.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:36:29,406 log: Not Found: /media/player_pics/Lawson_Jaillett.JPG
+WARNING 2026-08-03 16:36:29,408 basehttp: "GET /media/player_pics/Lawson_Jaillett.JPG HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:36:29,421 log: Not Found: /media/player_pics/Luke_Botzum.JPG
+WARNING 2026-08-03 16:36:29,424 basehttp: "GET /media/player_pics/Luke_Botzum.JPG HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:36:29,429 log: Not Found: /media/player_pics/Luke_Shelby.JPG
+WARNING 2026-08-03 16:36:29,432 basehttp: "GET /media/player_pics/Luke_Shelby.JPG HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:36:29,450 log: Not Found: /media/player_pics/Mason_Devine.JPG
+WARNING 2026-08-03 16:36:29,453 basehttp: "GET /media/player_pics/Mason_Devine.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:41:14,887 log: Not Found: /media/player_pics/cason-cason.jpg
+WARNING 2026-08-03 16:41:14,890 basehttp: "GET /media/player_pics/cason-cason.jpg HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:41:14,895 log: Not Found: /media/player_pics/Michael_Ferrell.JPG
+WARNING 2026-08-03 16:41:14,897 basehttp: "GET /media/player_pics/Michael_Ferrell.JPG HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:41:14,906 log: Not Found: /media/player_pics/Nordlander_Ryan.JPG
+WARNING 2026-08-03 16:41:14,916 log: Not Found: /media/player_pics/wood-parker.jpg
+WARNING 2026-08-03 16:41:14,922 log: Not Found: /media/player_pics/houston-poole.jpg
+WARNING 2026-08-03 16:41:14,922 basehttp: "GET /media/player_pics/Nordlander_Ryan.JPG HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:41:14,928 log: Not Found: /media/player_pics/Reese_Gregg.JPG
+WARNING 2026-08-03 16:41:14,933 log: Not Found: /media/player_pics/Preston_Owen.JPG
+WARNING 2026-08-03 16:41:14,939 log: Not Found: /media/player_pics/andrew-riedel.jpg
+WARNING 2026-08-03 16:41:14,940 basehttp: "GET /media/player_pics/wood-parker.jpg HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:41:14,943 basehttp: "GET /media/player_pics/houston-poole.jpg HTTP/1.1" 404 7700
+WARNING 2026-08-03 16:41:14,944 basehttp: "GET /media/player_pics/Reese_Gregg.JPG HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:41:14,945 basehttp: "GET /media/player_pics/Preston_Owen.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:41:14,948 basehttp: "GET /media/player_pics/andrew-riedel.jpg HTTP/1.1" 404 7700
+WARNING 2026-08-03 16:41:14,953 log: Not Found: /media/player_pics/xander-ryan.jpg
+WARNING 2026-08-03 16:41:14,967 log: Not Found: /media/player_pics/alejandro-sardi.jpg
+WARNING 2026-08-03 16:41:14,973 log: Not Found: /media/player_pics/kyle-shaheen.jpg
+WARNING 2026-08-03 16:41:14,977 log: Not Found: /media/player_pics/noah-sugg.jpg
+WARNING 2026-08-03 16:41:14,983 log: Not Found: /media/player_pics/Sawyer_Cooper.JPG
+WARNING 2026-08-03 16:41:14,985 basehttp: "GET /media/player_pics/alejandro-sardi.jpg HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:41:14,990 log: Not Found: /media/player_pics/bennett-selvage.jpg
+WARNING 2026-08-03 16:41:14,991 basehttp: "GET /media/player_pics/xander-ryan.jpg HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:41:14,991 basehttp: "GET /media/player_pics/kyle-shaheen.jpg HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:41:14,992 basehttp: "GET /media/player_pics/Sawyer_Cooper.JPG HTTP/1.1" 404 7700
+WARNING 2026-08-03 16:41:14,993 basehttp: "GET /media/player_pics/noah-sugg.jpg HTTP/1.1" 404 7684
+WARNING 2026-08-03 16:41:14,998 basehttp: "GET /media/player_pics/bennett-selvage.jpg HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:41:15,005 log: Not Found: /media/player_pics/Weston_Taylor.JPG
+WARNING 2026-08-03 16:41:15,012 log: Not Found: /media/player_pics/jonathan-vinson jr..jpg
+WARNING 2026-08-03 16:41:15,020 log: Not Found: /media/player_pics/jt-williams.jpg
+WARNING 2026-08-03 16:41:15,028 log: Not Found: /media/caleb-waters.jpg
+WARNING 2026-08-03 16:41:15,030 basehttp: "GET /media/player_pics/Weston_Taylor.JPG HTTP/1.1" 404 7700
+WARNING 2026-08-03 16:41:15,035 log: Not Found: /media/player_pics/Austin_Clark.JPG
+WARNING 2026-08-03 16:41:15,041 log: Not Found: /media/player_pics/Beckett_Kaltenbach.JPG
+WARNING 2026-08-03 16:41:15,041 basehttp: "GET /media/player_pics/jonathan-vinson%20jr..jpg HTTP/1.1" 404 7726
+WARNING 2026-08-03 16:41:15,042 basehttp: "GET /media/player_pics/jt-williams.jpg HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:41:15,044 basehttp: "GET /media/caleb-waters.jpg HTTP/1.1" 404 7648
+WARNING 2026-08-03 16:41:15,046 basehttp: "GET /media/player_pics/Beckett_Kaltenbach.JPG HTTP/1.1" 404 7720
+WARNING 2026-08-03 16:41:15,052 log: Not Found: /media/player_pics/Bennett_Zane.JPG
+WARNING 2026-08-03 16:41:15,053 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:41:15,059 log: Not Found: /media/player_pics/Cannon_Tyler.JPG
+WARNING 2026-08-03 16:41:15,061 basehttp: "GET /media/player_pics/Bennett_Zane.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:41:15,062 basehttp: "GET /media/player_pics/Cannon_Tyler.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:41:15,098 log: Not Found: /media/player_pics/Catrone_Jack.JPG
+WARNING 2026-08-03 16:41:15,109 log: Not Found: /media/player_pics/bennett-ferguson.jpg
+WARNING 2026-08-03 16:41:15,113 log: Not Found: /media/player_pics/Evan_Shelby.JPG
+WARNING 2026-08-03 16:41:15,117 log: Not Found: /media/player_pics/Colton_Briggs.JPG
+WARNING 2026-08-03 16:41:15,122 log: Not Found: /media/player_pics/Drew_Nordlander.JPG
+WARNING 2026-08-03 16:41:15,123 basehttp: "GET /media/player_pics/Catrone_Jack.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:41:15,127 log: Not Found: /media/player_pics/Derrigrand_Sean.JPG
+WARNING 2026-08-03 16:41:15,128 basehttp: "GET /media/player_pics/bennett-ferguson.jpg HTTP/1.1" 404 7712
+WARNING 2026-08-03 16:41:15,129 basehttp: "GET /media/player_pics/Colton_Briggs.JPG HTTP/1.1" 404 7700
+WARNING 2026-08-03 16:41:15,129 basehttp: "GET /media/player_pics/Evan_Shelby.JPG HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:41:15,133 basehttp: "GET /media/player_pics/Drew_Nordlander.JPG HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:41:15,135 basehttp: "GET /media/player_pics/Derrigrand_Sean.JPG HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:41:15,140 log: Not Found: /media/player_pics/keri-fitzsimmons.jpg
+WARNING 2026-08-03 16:41:15,148 log: Not Found: /media/player_pics/jackson-harrell.jpg
+WARNING 2026-08-03 16:41:15,153 log: Not Found: /media/player_pics/dayne-hunter.jpg
+WARNING 2026-08-03 16:41:15,159 log: Not Found: /media/player_pics/owen-heafner.jpg
+WARNING 2026-08-03 16:41:15,161 basehttp: "GET /media/player_pics/keri-fitzsimmons.jpg HTTP/1.1" 404 7712
+WARNING 2026-08-03 16:41:15,161 basehttp: "GET /media/player_pics/jackson-harrell.jpg HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:41:15,165 log: Not Found: /media/player_pics/Jace_Jones.JPG
+WARNING 2026-08-03 16:41:15,172 log: Not Found: /media/player_pics/Isaiah_Blount.JPG
+WARNING 2026-08-03 16:41:15,172 basehttp: "GET /media/player_pics/dayne-hunter.jpg HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:41:15,174 basehttp: "GET /media/player_pics/owen-heafner.jpg HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:41:15,177 basehttp: "GET /media/player_pics/Jace_Jones.JPG HTTP/1.1" 404 7688
+WARNING 2026-08-03 16:41:15,179 basehttp: "GET /media/player_pics/Isaiah_Blount.JPG HTTP/1.1" 404 7700
+WARNING 2026-08-03 16:41:15,187 log: Not Found: /media/player_pics/Jack_Wride.JPG
+WARNING 2026-08-03 16:41:15,191 log: Not Found: /media/player_pics/Keagan_Drake.JPG
+WARNING 2026-08-03 16:41:15,197 log: Not Found: /media/player_pics/Lawson_Jaillett.JPG
+WARNING 2026-08-03 16:41:15,205 log: Not Found: /media/player_pics/Luke_Botzum.JPG
+WARNING 2026-08-03 16:41:15,206 basehttp: "GET /media/player_pics/Luke_Botzum.JPG HTTP/1.1" 404 7692
+WARNING 2026-08-03 16:41:15,207 basehttp: "GET /media/player_pics/Jack_Wride.JPG HTTP/1.1" 404 7688
+WARNING 2026-08-03 16:41:15,212 log: Not Found: /media/player_pics/Mason_Devine.JPG
+WARNING 2026-08-03 16:41:15,230 basehttp: "GET /media/player_pics/Mason_Devine.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:41:15,220 log: Not Found: /media/player_pics/Luke_Shelby.JPG
+WARNING 2026-08-03 16:41:15,232 basehttp: "GET /media/player_pics/Keagan_Drake.JPG HTTP/1.1" 404 7696
+WARNING 2026-08-03 16:41:15,215 basehttp: "GET /media/player_pics/Lawson_Jaillett.JPG HTTP/1.1" 404 7708
+WARNING 2026-08-03 16:41:15,237 basehttp: "GET /media/player_pics/Luke_Shelby.JPG HTTP/1.1" 404 7692
+WARNING 2026-08-04 19:20:55,565 log: Not Found: /media/player_pics/Austin_Clark.JPG
+WARNING 2026-08-04 19:20:55,567 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7955
+WARNING 2026-08-04 19:30:12,171 log: Not Found: /media/player_pics/Austin_Clark.JPG
+WARNING 2026-08-04 19:30:12,172 basehttp: "GET /media/player_pics/Austin_Clark.JPG HTTP/1.1" 404 7955

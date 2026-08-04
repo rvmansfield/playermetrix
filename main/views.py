@@ -62,6 +62,10 @@ def contact(request):
     return render(request, 'main/contact.html')
 
 
+def services(request):
+    return render(request, 'main/services.html')
+
+
 def calculate_percentile(min_val, max_val, current_val):
     if max_val == min_val:
         raise ValueError("max and min cannot be the same")
@@ -80,6 +84,7 @@ def results(request, metric_id):
 
         print('hello world')
         print(player_metric.playerAge)
+        print(player_metric.metricType)
         
         # Get comparison data from MetricsRange for the same metric type and age
         comparison_data = []
