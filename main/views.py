@@ -78,58 +78,35 @@ def calculate_percentile(min_val, max_val, current_val):
 
 
 
-def results(request, metric_id):
+def _build_comparison_data(player_metric):
+    """Build the age-based benchmark comparison for an unsaved PlayerMetric instance."""
+    playerAge = int(player_metric.playerAge)
+
     try:
-        player_metric = PlayerMetric.objects.get(id=metric_id)
+        metrics_range = MetricsRange.objects.get(
+            metricType=player_metric.metricType,
+            playerAge=playerAge
+        )
 
-        print('hello world')
-        print(player_metric.playerAge)
-        print(player_metric.metricType)
-        
-        # Get comparison data from MetricsRange for the same metric type and age
-        comparison_data = []
-        
-        # Get the player's age for comparison
-        playerAge = int(player_metric.playerAge)
-        
-        # Try to get the metrics range for this metric type and graduation class
-        try:
-            metrics_range = MetricsRange.objects.get(
-                metricType=player_metric.metricType,
-                playerAge=playerAge
-            )
-            
-            comparison_data = {
-                'min_value': metrics_range.Min,
-                'max_value': metrics_range.Max,
-                'average': metrics_range.Avg,
-                'current_value': player_metric.metric,
-                'metric_type_display': player_metric.get_metricType_display(),
-                'metric_type': player_metric.metricType,
-                'playerAge': player_metric.playerAge,
-                'player_age': player_metric.playerAge,
-                'has_data': True,
-                'percentile': calculate_percentile(metrics_range.Min, metrics_range.Max, player_metric.metric),
-                
-            }
-
-            print(comparison_data)
-            
-        except MetricsRange.DoesNotExist:
-            # No range data for this metric type and graduation class
-            comparison_data = {
-                'no_data': True,
-                'playerAge': playerAge,
-                'player_age': playerAge,
-                'metric_type_display': player_metric.get_metricType_display()
-            }
-        
-        return render(request, 'main/results.html', {
-            'player_metric': player_metric,
-            'comparison_data': comparison_data
-        })
-    except PlayerMetric.DoesNotExist:
-        return redirect('evaluate')
+        return {
+            'min_value': metrics_range.Min,
+            'max_value': metrics_range.Max,
+            'average': metrics_range.Avg,
+            'current_value': player_metric.metric,
+            'metric_type_display': player_metric.get_metricType_display(),
+            'metric_type': player_metric.metricType,
+            'playerAge': player_metric.playerAge,
+            'player_age': player_metric.playerAge,
+            'has_data': True,
+            'percentile': calculate_percentile(metrics_range.Min, metrics_range.Max, player_metric.metric),
+        }
+    except MetricsRange.DoesNotExist:
+        return {
+            'no_data': True,
+            'playerAge': playerAge,
+            'player_age': playerAge,
+            'metric_type_display': player_metric.get_metricType_display()
+        }
 
 def metrics_history(request):
     # Get search parameters
@@ -322,14 +299,19 @@ def evaluate(request):
     if request.method == 'POST':
         form = PlayerMetricForm(request.POST)
         if form.is_valid():
-            player_metric = form.save()
-            return redirect('results', metric_id=player_metric.id)
+            # Not persisted — this is a one-off lookup, not a saved metric record.
+            player_metric = form.save(commit=False)
+            comparison_data = _build_comparison_data(player_metric)
+            return render(request, 'main/results.html', {
+                'player_metric': player_metric,
+                'comparison_data': comparison_data
+            })
         else:
             # Form has errors, will be displayed in template
             pass
     else:
         form = PlayerMetricForm()
-    
+
     return render(request, 'main/evaluate.html', {'form': form})
 
 @login_required

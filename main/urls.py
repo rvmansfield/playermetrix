@@ -7,7 +7,6 @@ urlpatterns = [
     path('services/', views.services, name='services'),
     path('contact/', views.contact, name='contact'),
     path('evaluate/', views.evaluate, name='evaluate'),
-    path('results/<int:metric_id>/', views.results, name='results'),
     path('history/', views.metrics_history, name='metrics_history'),
     path('add/<slug:player_id>/', views.add, name='add'),
     path('profile/', views.profile_list, name='profile_list'),
